@@ -1,923 +1,0 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>RG1 Commerce: روابط ومنتجات التسويق بالعمولة | المدونة والمقارنات</title>
-    <meta name="description" content="اكتشف أفضل روابط ومنتجات التسويق بالعمولة (Affiliate) المختارة بعناية. مدونة RG1 Commerce لتعليم التجارة الإلكترونية ونصائح الشراء." />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* الألوان المطلوبة لـ RJ 1 Commerce */
-        :root {
-            --bg-light: #f7f7fb;
-            --bg-card-light: white;
-            --text-color-light: #1f2937;
-            --text-secondary-light: #6b7280;
-            --color-blue: #2563eb;
-            /* الألوان المطلوبة */
-            --rg1-primary-color: #6B21A8; /* بنفسجي غامق */
-            --rg1-light-bg: #F5F0FA; /* بنفسجي فاتح للخلفية العامة */
-            --rg1-card-bg: #FFFFFF; /* بطاقات بيضاء */
-            --rg1-text-dark: #1F2937;
-        }
-
-        html.dark {
-            --bg-light: #1f2937;
-            --bg-card-light: #374151;
-            --text-color-light: #f3f4f6;
-            --text-secondary-light: #d1d5db;
-            --color-blue: #60a5fa;
-            --rg1-card-bg: #374151;
-            --rg1-light-bg: #291D3A;
-            --rg1-text-dark: #f3f4f6;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-            background: var(--rg1-light-bg);
-            margin: 0;
-            padding: 0;
-            transition: background 0.3s;
-            color: var(--rg1-text-dark);
-            direction: rtl;
-        }
-
-        #app-container {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        #main-content {
-            flex-grow: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-top: 20px;
-            width: 100%;
-        }
-
-        header .logo-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .logo-container img {
-            height: 120px; /* حجم كبير للشعار */
-            width: auto;
-            object-fit: contain;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            background: var(--rg1-primary-color);
-            color: white;
-            border: none;
-            transition: background 0.3s;
-            text-decoration: none; /* لضمان عدم وجود خط تحت الروابط الأزرار */
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .grid {
-            display: grid;
-            gap: 16px;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-
-        .card {
-            background: var(--rg1-card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-top: 20px;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        .card h2 {
-            color: var(--rg1-primary-color);
-            font-size: 1.5em;
-            border-bottom: 2px solid var(--rg1-primary-color);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-
-        .product-card, .blog-card, .affiliate-link-card {
-            border: 1px solid #eee;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            padding: 12px;
-            margin: 10px 0;
-            transition: all 0.2s;
-            border-radius: 8px;
-            text-align: center;
-            background: var(--bg-card-light);
-        }
-
-        .product-card:hover, .blog-card:hover, .affiliate-link-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* تنسيقات نافذة الصور والفيديوهات الجانبية (Media Sidebar) */
-        #media-sidebar {
-            width: 300px;
-            margin-right: 20px;
-            padding: 15px;
-            background: var(--rg1-card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 20px;
-            height: fit-content;
-            align-self: flex-start;
-            z-index: 500;
-        }
-
-        .media-carousel {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background-color: var(--rg1-light-bg);
-        }
-
-        .carousel-item {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 1s ease-in-out; /* تأثير Fade */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .carousel-item.active {
-            opacity: 1;
-        }
-
-        .carousel-item img, .carousel-item iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: none;
-        }
-
-        /* إخفاء الاسم الشخصي من واجهة معلومات الاتصال */
-        .contact-info-block h3 {
-            display: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            #media-sidebar {
-                position: static;
-                width: 100%;
-                margin: 20px 0;
-                order: -1;
-            }
-            #app-container {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo-container img {
-                height: 90px;
-            }
-            #main-content {
-                padding: 0 10px;
-            }
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            }
-            .card {
-                padding: 15px;
-            }
-        }
-
-        /* Chatbot Styles */
-        .chatbot-window { 
-            z-index: 10000; /* قيمة عالية ليكون فوق الكل */
-            border: 2px solid var(--rg1-primary-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            position: fixed;
-            bottom: 80px; 
-            right: 20px; 
-            width: 320px; 
-            max-width: 90%; 
-            padding: 12px;
-            border-radius: 12px;
-        }
-        #chatbot-button { 
-            background: #10b981; 
-            position: fixed; 
-            bottom: 20px; 
-            right: 20px; 
-            z-index: 10001; 
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        .chatbot-hidden { display: none !important; }
-        .float-left { float: left; }
-        .float-right { float: right; }
-        .bg-blue-600 { background: var(--color-blue); }
-        .text-white { color: white; }
-        .bg-gray-200 { background: #e5e7eb; color: #1f2937; }
-        html.dark .bg-gray-200 { background: #4b5563; color: white; }
-
-        /* Welcome Pop-up Styles */
-        #welcome-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--rg1-card-bg);
-            border: 3px solid var(--rg1-primary-color);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            z-index: 10002;
-            text-align: center;
-            max-width: 80%;
-        }
-        #welcome-popup h2 {
-            color: var(--rg1-primary-color);
-            margin-top: 0;
-            font-size: 1.8em;
-        }
-        #welcome-popup p {
-            color: var(--rg1-text-dark);
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-        #close-popup {
-            background: #dc2626;
-        }
-
-        /* Affiliate/Ad Links Styling */
-        .ad-link-icon {
-            font-size: 1.5em;
-            margin-left: 10px;
-            color: var(--rg1-primary-color);
-        }
-    </style>
-</head>
-
-<body>
-    <div id="welcome-popup" class="hidden">
-        <h2>👋 مرحباً بك في RG1 Commerce!</h2>
-        <p>نحن هنا لنوفر لك أفضل الروابط التجارية والمنتجات المختارة بعناية. استكشف أقسامنا!</p>
-        <button id="close-popup" class="btn">ابدأ التصفح</button>
-    </div>
-
-    <div id="app-container">
-        <aside id="media-sidebar">
-            <h2 style="font-size: 1.3em;">المنتجات المرئية</h2>
-            <div id="product-media-carousel" class="media-carousel"></div>
-            <p style="text-align: center; font-size: 0.9em; color: var(--text-secondary-light);">صور وفيديوهات إعلانية بدون أسعار - للتمرير التلقائي</p>
-        </aside>
-
-        <div id="main-content">
-            <header>
-                <div class="logo-container">
-                    <img src="1000061847.jpg" alt="RG1 Logo">
-                </div>
-                <nav style="display:flex; gap:15px; flex-wrap: wrap; justify-content: center;">
-                    <a href="#products-section" data-key="menu_products" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">المنتجات</a>
-                    <a href="#blog-section" data-key="menu_blog" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">المدونة</a>
-                    <a href="#affiliates-section" data-key="menu_affiliates" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">الشركاء</a>
-                    <a href="#contact-messages-section" data-key="menu_contact" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">تواصل</a>
-                    <a href="#privacy-policy-full" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">الخصوصية</a>
-                    <a href="#terms-conditions-full" style="text-decoration:none; color:var(--rg1-primary-color); font-weight: bold;">الشروط</a>
-                </nav>
-            </header>
-
-            <section id="products-section" class="card">
-                <h2 id="products-title" data-key="section_products_title">اكتشف منتجاتنا</h2>
-                <div id="products-container" class="grid"></div>
-            </section>
-            
-            <section id="affiliates-section" class="card">
-                <h2 data-key="section_affiliates_title">أفضل الروابط التجارية</h2>
-                <div id="affiliates-grid" class="grid"></div>
-            </section>
-
-            <section id="blog-section" class="card">
-                <h2 data-key="menu_blog">المدونة (المقالات)</h2>
-                <div id="blog-container"></div>
-            </section>
-            
-            <section id="privacy-policy-full" class="card">
-                <h2 style="color: var(--rg1-primary-color);">📜 سياسة الخصوصية لـ RG1 Commerce</h2>
-                <p style="color: var(--text-secondary-light);">تاريخ آخر تحديث: 23 نوفمبر 2025</p>
-            
-                <h3 style="margin-top: 20px;">1. جمع واستخدام المعلومات</h3>
-                <p>
-                    نحن في RG1 Commerce نلتزم بحماية خصوصية زوارنا. يتم جمع المعلومات للأغراض التالية فقط:
-                    <ul>
-                        <li>**بيانات الاستخدام (Usage Data):** نجمع معلومات حول كيفية وصولك واستخدامك للموقع (مثل الصفحات التي تزورها، الوقت المستغرق، ونوع المتصفح). تُستخدم هذه البيانات لتحسين تجربة المستخدم وتحليل أداء الموقع.</li>
-                        <li>**بيانات الاتصال (Contact Data):** المعلومات التي تقدمها عبر نموذج "اتصل بنا" (الاسم والبريد الإلكتروني والرسالة) تُستخدم فقط للرد على استفساراتك.</li>
-                        <li>**ملفات تعريف الارتباط (Cookies):** نستخدم ملفات تعريف الارتباط لتحسين تجربتك وتذكر تفضيلاتك وتتبع النقرات على الروابط التابعة (Affiliate Links).</li>
-                    </ul>
-                </p>
-            
-                <h3 style="margin-top: 20px;">2. الإفصاح عن البيانات</h3>
-                <p>
-                    نحن لا نبيع بياناتك الشخصية أو نتاجر بها. قد نكشف عن بياناتك لطرف ثالث موثوق به فقط في الحالات التالية:
-                    <ul>
-                        <li>**مقدمي الخدمات:** شركات استضافة الويب والتحليل التي تساعدنا في تشغيل الموقع، وهي ملزمة بالحفاظ على سرية بياناتك.</li>
-                        <li>**التزامات قانونية:** إذا كنا ملزمين قانونًا بالكشف عن البيانات.</li>
-                    </ul>
-                </p>
-            
-                <h3 style="margin-top: 20px;">3. حقوقك بموجب القانون العام لحماية البيانات (GDPR)</h3>
-                <p>إذا كنت مقيمًا في الاتحاد الأوروبي، يحق لك: الوصول، التصحيح، الحذف، والاعتراض على معالجة بياناتك. يمكنك ممارسة هذه الحقوق عن طريق الاتصال بنا عبر البريد الإلكتروني المذكور في صفحة "تواصل معنا".</p>
-            </section>
-            
-            <section id="terms-conditions-full" class="card">
-                <h2 style="color: var(--rg1-primary-color);">⚖️ الشروط والأحكام لـ RG1 Commerce</h2>
-                <p style="color: var(--text-secondary-light);">تسري هذه الشروط عند استخدامك لموقعنا.</p>
-            
-                <h3 style="margin-top: 20px;">1. شروط الاستخدام وقبول الشروط</h3>
-                <p>يعد دخولك واستخدامك لموقع RG1 Commerce بمثابة موافقة كاملة على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يجب عليك عدم استخدام الموقع.</p>
-            
-                <h3 style="margin-top: 20px;">2. نظام التسويق بالعمولة (Affiliate Disclosure)</h3>
-                <p style="font-weight: bold; color: #DC2626;">RG1 Commerce هو موقع تسويق بالعمولة.</p>
-                <ul>
-                    <li>**العمولات:** نحصل على عمولة من طرف ثالث عندما تشتري منتجًا عبر الروابط الموجودة على موقعنا. هذا لا يزيد من تكلفة المنتج عليك.</li>
-                    <li>**المسؤولية عن المنتجات:** نحن لسنا البائعين الأصليين أو الموردين. نحن لا نتحمل مسؤولية جودة، شحن، أو إرجاع أي منتج يتم شراؤه عبر الروابط التابعة. يجب توجيه الاستفسارات المتعلقة بالمنتج إلى البائع الأصلي.</li>
-                </ul>
-            
-                <h3 style="margin-top: 20px;">3. الملكية الفكرية (Copyright)</h3>
-                <p>جميع محتويات الموقع، بما في ذلك النصوص، الجرافيك، الأكواد، وتصاميم المدونة، هي ملكية حصرية لـ RG1 Commerce (عادل لغريفي) ومحمية بقوانين حقوق النشر. يُمنع إعادة إنتاج أو نسخ أو توزيع أي جزء من المحتوى دون إذن خطي.</p>
-            
-                <h3 style="margin-top: 20px;">4. تحديد المسؤولية</h3>
-                <p>يتم توفير الموقع "كما هو" (As Is). لن نكون مسؤولين عن أي أضرار مباشرة أو غير مباشرة أو عرضية تنشأ عن استخدامك للموقع أو عدم القدرة على استخدامه.</p>
-            </section>
-
-            <section id="new-affiliate-links" class="card">
-                <h2>🔗 الروابط الإعلانية/الربحية المباشرة</h2>
-                <p style="color: var(--text-secondary-light); margin-bottom: 20px;">روابط مصنفة حسب المحتوى لسهولة الوصول:</p>
-                
-                <h3><i class="fas fa-gift ad-link-icon"></i> بطاقات الهدايا والعروض</h3>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                    <a href="https://yazing.com/category/gift-certificates/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#F59E0B;">بطاقات الهدايا</a>
-                    <a href="https://yazing.com/topdeals/freetrials/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#10B981;">تجارب مجانية</a>
-                    <a href="https://yazing.com/topdeals/freeshipping/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#8B5CF6;">شحن مجاني</a>
-                </div>
-
-                <h3 style="margin-top:20px;"><i class="fas fa-shopping-bag ad-link-icon"></i> التسوق والخدمات</h3>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                    <a href="https://yazing.com/category/apparel/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#DC2626;">ملابس وموضة</a>
-                    <a href="https://yazing.com/category/travel/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#3B82F6;">سفر وسياحة</a>
-                    <a href="https://yazing.com/category/food-cooking/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#F43F5E;">طعام وطبخ</a>
-                </div>
-
-                <h3 style="margin-top:20px;"><i class="fas fa-plug ad-link-icon"></i> خدمات محددة</h3>
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                    <a href="https://yazing.com/deals/verizonwireless/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#A5B4FC;">Verizon Wireless</a>
-                    <a href="https://yazing.com/deals/fansedge/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#4B5563;">FansEdge</a>
-                    <a href="https://yazing.com/deals/directv/Rg1_commerce" target="_blank" class="affiliate-link-card btn" style="background:#6D28D9;">DirectV</a>
-                </div>
-            </section>
-
-            <section id="contact-messages-section" class="card">
-                <h2>اتصل بنا</h2>
-                <div class="contact-grid" style="display: grid; gap: 30px; grid-template-columns: 1fr;">
-                    <div class="contact-info-block">
-                        <div class="info-list">
-                            <div class="info-item" style="margin-bottom: 10px;">
-                                <i class="fas fa-envelope info-icon" style="color: var(--rg1-primary-color);"></i>
-                                <span class="label">البريد الإلكتروني:</span>
-                                <a id="contact-email-link" href="mailto:a.laghrifi@outlook.fr" style="color: #4B5563;">a.laghrifi@outlook.fr</a>
-                            </div>
-                            <div class="info-item" style="margin-bottom: 10px;">
-                                <i class="fab fa-whatsapp info-icon" style="color:#25D366;"></i>
-                                <span class="label">تواصل عبر واتساب:</span>
-                                <a href="https://wa.me/212660074196" target="_blank" style="color: #4B5563;">انقر للبدء (رسائل فقط)</a>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-hand-holding-usd info-icon" style="color: #0070BA;"></i>
-                                <span class="label">الدعم والمدفوعات:</span>
-                                <a id="paypal-support-button-contact" href="https://www.paypal.com/ncp/payment/QTMEP82WWYHQ2" target="_blank" class="btn" style="background:#0070BA; padding: 5px 10px; margin-top: 5px; display: inline-block;">💰 ادعمنا عبر PayPal</a>
-                            </div>
-                        </div>
-                    </div>
-                    <form id="contactForm" method="POST" action="https://formspree.io/f/mrbgjqoe" class="contact-form">
-                        <h3 class="sub-section-title" style="color:var(--rg1-primary-color); font-size: 1.2em;">أرسل استفسارك مباشرة</h3>
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label for="name" style="display: block; margin-bottom: 5px;">الاسم الكامل:</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكريم" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label for="email" style="display: block; margin-bottom: 5px;">البريد الإلكتروني:</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="بريدك الإلكتروني" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label for="message" style="display: block; margin-bottom: 5px;">الرسالة أو الاستشارة:</label>
-                            <textarea id="message" name="message" class="form-control" rows="5" placeholder="تفاصيل مشروعك أو استفسارك..." required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width:100%; margin-top:20px; background:var(--rg1-primary-color);">إرسال الرسالة</button>
-                    </form>
-                </div>
-            </section>
-            
-            <footer class="card" style="margin-top: 30px; text-align: center; padding: 10px 20px;">
-                <p style="font-size:.8em; margin-top:5px; color: var(--text-secondary-light);">&copy; 2025 RG1 Commerce. جميع الحقوق محفوظة.</p>
-            </footer>
-        </div>
-    </div>
-    
-    <button id="chatbot-button" class="btn chatbot-hidden">🤖 روبوت المساعدة</button>
-    <div id="chatbot-window" class="chatbot-hidden card">
-        <div id="chat-messages" style="height:200px; overflow-y:auto; overflow-x:hidden; margin-bottom:8px; border-bottom:1px solid #ddd; padding-bottom: 8px;"></div>
-        <input id="chat-input" data-key="chatbot_placeholder" placeholder="اكتب سؤالك هنا..." style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd; box-sizing:border-box;" />
-        <button id="chatbot-close" class="btn" style="margin-top:8px; width:100%; background:#dc2626;">إغلاق الروبوت</button>
-    </div>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "RG1 Commerce",
-      "url": "https://rg1commerce.com", 
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://rg1commerce.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "RG1 Commerce",
-      "url": "https://rg1commerce.com",
-      "logo": "https://rg1commerce.com/1000061847.jpg",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+212-660-074-196",
-        "contactType": "Customer service"
-      }
-    }
-    </script>
-    
-    <script>
-        // المتغيرات الأساسية العامة
-        let currentLang = localStorage.getItem('rg1_lang') || 'ar';
-        let currentTheme = localStorage.getItem('rg1_theme') || 'light';
-
-        // =======================================================================
-        // 1) بيانات اللغة (Translations)
-        // =======================================================================
-        const translations = {
-            'menu_products': { ar: 'المنتجات', en: 'Products' },
-            'menu_blog': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' },
-            'menu_affiliates': { ar: 'الشركاء', en: 'Partners' },
-            'menu_contact': { ar: 'تواصل', en: 'Contact' },
-            'section_products_title': { ar: 'اكتشف منتجاتنا', en: 'Discover Our Products' },
-            'section_affiliates_title': { ar: 'أفضل الروابط التجارية', en: 'Top Affiliate Platforms' },
-            'chatbot_placeholder': { ar: 'اكتب سؤالك هنا...', en: 'Type your question here...' },
-        };
-
-        // =======================================================================
-        // 2) بيانات الروابط التجارية (Affiliates)
-        // =======================================================================
-        const affiliatePlatforms = [{ name: 'Amazon', img: 'https://via.placeholder.com/50/FF9900/FFFFFF?text=AZ', link: '#' }, { name: 'Alibaba', img: 'https://via.placeholder.com/50/FF4500/FFFFFF?text=AB', link: '#' }, { name: 'Aliexpress', img: 'https://via.placeholder.com/50/FF0000/FFFFFF?text=AE', link: '#' }, { name: 'Jumia', img: 'https://via.placeholder.com/50/FFA500/000000?text=JU', link: '#' }, { name: 'Merjan', img: 'https://via.placeholder.com/50/000000/FFFFFF?text=MJ', link: '#' }, ];
-
-        // =======================================================================
-        // 3) بيانات المنتجات (10 منتجات) - (تم تحسين الأوصاف)
-        // =======================================================================
-        const products = Object.freeze([
-            { 
-                name: "منتجات Aurate New York", 
-                price: "50$", 
-                image: "https://via.placeholder.com/150/2563eb/ffffff?text=Aurate", 
-                link: "https://yazing.com/deals/auratenewyork/Rg1_commerce", 
-                description: "**مجوهرات عصرية فاخرة:** تصاميم أنيقة مصنوعة يدويًا من الذهب المعاد تدويره عالي الجودة. مثالية للإهداء أو الاستثمار في قطعة تدوم طويلاً." 
-            },
-            { 
-                name: "شعر مستعار من Asteria Hair", 
-                price: "25$", 
-                image: "https://via.placeholder.com/150/10b981/ffffff?text=Asteria", 
-                link: "https://yazing.com/deals/asteriahair/Rg1_commerce", 
-                description: "**وصلات شعر طبيعية 100%:** جودة استثنائية وكثافة فائقة، تضمن مظهراً طبيعياً دون تلف. سهلة التركيب والتصفيف." 
-            },
-            { 
-                name: "منتجات Ashimary Hair", 
-                price: "35$", 
-                image: "https://via.placeholder.com/150/f59e0b/ffffff?text=Ashimary", 
-                link: "https://yazing.com/deals/ashimaryhair/Rg1_commerce", 
-                description: "**أحدث صيحات وصلات الشعر الفاخرة:** تخصص في تصاميم الدانتيل الأمامية والباروكات عالية التحمل. إطلالة احترافية بأسعار منافسة." 
-            },
-            { 
-                name: "ملابس Ashley Stewart", 
-                price: "40$", 
-                image: "https://via.placeholder.com/150/800080/FFFFFF?text=Stewart", 
-                link: "https://yazing.com/deals/ashleystewart/Rg1_commerce", 
-                description: "**مجموعة شاملة للمقاسات الكبيرة (Plus Size):** أزياء عصرية ومريحة تناسب جميع الأذواق والمناسبات. اكتشفي أناقتك بلا حدود." 
-            },
-            { 
-                name: "ملابس سباحة Anne Cole", 
-                price: "60$", 
-                image: "https://via.placeholder.com/150/FF00FF/FFFFFF?text=Anne+Cole", 
-                link: "https://yazing.com/deals/annecole.com/Rg1_commerce", 
-                description: "**أزياء شاطئية أنيقة ومبتكرة:** تصميمات كلاسيكية وعصرية لملابس السباحة، توفر الدعم والراحة. اشعري بالثقة على الشاطئ." 
-            },
-            { name: "تصاميم Anjays Designs", price: "85$", image: "https://via.placeholder.com/150/00FFFF/000000?text=Anjays", link: "https://yazing.com/deals/anjaysdesigns/Rg1_commerce", description: "منتجات منزلية وديكورات فريدة." }, 
-            { name: "ملابس Andreas Sous", price: "70$", image: "https://via.placeholder.com/150/0000FF/FFFFFF?text=Sous", link: "https://yazing.com/deals/andreassous/Rg1_commerce", description: "أزياء رجالية بأسلوب متميز." }, 
-            { name: "ملابس سباحة Andie Swim", price: "55$", image: "https://via.placeholder.com/150/FFC0CB/000000?text=Andie", link: "https://yazing.com/deals/andieswim/Rg1_commerce", description: "أطقم سباحة مريحة وعملية." }, 
-            { name: "أزياء American Eagle UK", price: "30$", image: "https://via.placeholder.com/150/808080/FFFFFF?text=AE+UK", link: "https://yazing.com/deals/ae-uk/Rg1_commerce", description: "ملابس كاجوال وعصرية من AE." }, 
-            { name: "نظارات Abbe Glasses", price: "20$", image: "https://via.placeholder.com/150/A52A2A/FFFFFF?text=Abbe", link: "https://yazing.com/deals/abbeglasses/Rg1_commerce", description: "نظارات طبية وشمسية بأسعار معقولة." },
-        ]);
-
-        // =======================================================================
-        // 4) بيانات المدونة (تم إضافة محتوى أصلي)
-        // =======================================================================
-        const blogPosts = Object.freeze([
-            { 
-                title: "5 استراتيجيات لتحقيق أقصى استفادة من روابط التسويق بالعمولة", 
-                date: "2025-11-23", 
-                content: "التسويق بالعمولة ليس مجرد وضع رابط. يركز هذا المقال على كيفية دمج روابطك بذكاء في محتوى قيم، واستخدام المقارنات الصادقة، وتقديم نصائح حقيقية لزيادة ثقة جمهورك وتحويل النقرات إلى مبيعات فعّالة." 
-            },
-            { 
-                title: "كيف تختار أفضل منصات التجارة الإلكترونية لنجاح مشروعك RG1 Commerce", 
-                date: "2025-11-20", 
-                content: "يبدأ النجاح باختيار الشركاء المناسبين. هنا نقارن بين مميزات منصات مثل أمازون، علي بابا، ويازينج، مع التركيز على عمق الكتالوج، وجودة خدمة الشحن، وسياسات العمولات الأكثر ربحًا لمتابعينا." 
-            },
-            { 
-                title: "ماذا يعني الالتزام بمعايير GDPR ولماذا هو مهم للمواقع العربية؟", 
-                date: "2025-11-15", 
-                content: "معايير حماية البيانات الأوروبية (GDPR) أصبحت معيارًا عالميًا. يشرح هذا المقال ببساطة كيفية التعامل مع بيانات الزوار، وأهمية الشفافية في سياسة الخصوصية لضمان مصداقية مشروعك وتجنب المخاطر القانونية." 
-            }
-        ]);
-
-        // =======================================================================
-        // 5) بيانات محتوى الـ Carousel (10 صور و 10 فيديوهات بدون حقوق نشر)
-        // =======================================================================
-        const carouselMedia = Object.freeze([
-            { type: 'image', src: "https://via.placeholder.com/300/6B21A8/FFFFFF?text=RG1+Ad+1+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/4F46E5/FFFFFF?text=RG1+Ad+2+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/y6Sna87N-6o?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/F59E0B/FFFFFF?text=RG1+Ad+3+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/qg_v8Wf6_T8?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/10B981/FFFFFF?text=RG1+Ad+4+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/Sng1Bv14Nek?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/EF4444/FFFFFF?text=RG1+Ad+5+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/rV58z87b168?controls=0" }, // فيديو تجريبي
-        ]);
-
-        // =======================================================================
-        // 6) نظام ردود الروبوت الذكي (متعدد اللغات)
-        // =======================================================================
-        const chatbotResponses = {
-            'ar': {
-                'بحث عن منتج': 'للبحث عن المنتجات، يرجى زيارة قسم "المنتجات".',
-                'مرحباً': 'أهلاً بك! أنا روبوت RG1 Commerce، كيف يمكنني المساعدة اليوم؟',
-                'الواتساب': 'للتواصل عبر واتساب، يرجى النقر على الرابط في قسم "تواصل معنا".',
-                'غير مفهوم': 'عذراً، لم أفهم سؤالك. أنا أدعم الإجابة باللغة العربية والإنجليزية.',
-                'من نحن': 'أنا روبوت RG1 Commerce الذكي. مهمتي هي توجيهك في الموقع. نحن مشروع تسويق بالعمولة (Affiliate).',
-            },
-            'en': {
-                'بحث عن منتج': 'Please visit the "Products" section to browse.',
-                'مرحباً': 'Hello! I am the RG1 Commerce bot, how may I assist you today?',
-                'الواتساب': 'For WhatsApp contact, please click the link in the "Contact" section.',
-                'غير مفهوم': 'Sorry, I don\'t understand your question. I support answers in Arabic and English.',
-                'من نحن': 'I am the RG1 Commerce AI bot. I guide you through the site. We are an affiliate marketing project.',
-            }
-        };
-
-        function processUserQuery(query) {
-            const lowerQuery = query.toLowerCase();
-            const lang = currentLang; // تحديد لغة الرد بناءً على لغة الواجهة
-            let responseKey = 'غير مفهوم';
-
-            if (lowerQuery.includes('منتج') || lowerQuery.includes('product') || lowerQuery.includes('شراء') || lowerQuery.includes('buy')) {
-                responseKey = 'بحث عن منتج';
-            } else if (lowerQuery.includes('سلام') || lowerQuery.includes('مرحبا') || lowerQuery.includes('hello')) {
-                responseKey = 'مرحباً';
-            } else if (lowerQuery.includes('واتساب') || lowerQuery.includes('whatsapp') || lowerQuery.includes('تواصل') || lowerQuery.includes('contact')) {
-                responseKey = 'الواتساب';
-            } else if (lowerQuery.includes('من نحن') || lowerQuery.includes('about') || lowerQuery.includes('mission')) {
-                responseKey = 'من نحن';
-            }
-
-            const response = chatbotResponses[lang][responseKey];
-            setTimeout(() => { appendMessage(response, 'bot'); }, 800);
-        }
-
-        // =======================================================================
-        // --- وظائف التشغيل التلقائي (AUTO FUNCTIONS) ---
-        // =======================================================================
-        function applyLanguage() {
-            document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', currentLang);
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const key = element.getAttribute('data-key');
-                if (translations[key] && translations[key][currentLang]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.setAttribute('placeholder', translations[key][currentLang]);
-                    } else {
-                        element.textContent = translations[key][currentLang];
-                    }
-                }
-            });
-            renderProducts();
-            renderAffiliates();
-            renderBlogPosts();
-        }
-
-        function renderProducts() {
-            const container = document.getElementById('products-container');
-            if (!container) return;
-            container.innerHTML = '';
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
-                                  <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
-                                  <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
-                                  <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;
-                container.appendChild(card);
-            });
-        }
-
-        function renderAffiliates() {
-            const affiliatesGrid = document.getElementById('affiliates-grid');
-            if (affiliatesGrid) {
-                affiliatesGrid.innerHTML = '';
-                affiliatePlatforms.forEach(platform => {
-                    const platformDiv = `<a href="${platform.link}" target="_blank" class="affiliate-link-card" style="text-decoration:none; display:flex; flex-direction: column; align-items: center; justify-content: center; gap:8px;"><img src="${platform.img}" alt="${platform.name}" style="width:48px; height:48px; object-fit:contain; border-radius: 4px;"><span style="font-size:1.1em; font-weight:bold; color: var(--rg1-primary-color);">${platform.name}</span></a>`;
-                    affiliatesGrid.innerHTML += platformDiv;
-                });
-            }
-        }
-
-        function renderBlogPosts() {
-            const container = document.getElementById('blog-container');
-            if (!container) return;
-            container.innerHTML = '';
-            [...blogPosts].reverse().forEach(post => {
-                const card = document.createElement('div');
-                card.className = 'blog-card';
-                card.innerHTML = `<h3 style="color: var(--rg1-primary-color);">${post.title}</h3><small style="color: var(--text-secondary-light);">${post.date}</small><p>${post.content}</p>`;
-                container.appendChild(card);
-            });
-        }
-
-        // =======================================================================
-        // --- وظائف الـ Carousel الجانبي ---
-        // =======================================================================
-        let currentMediaIndex = 0;
-        let carouselInterval;
-
-        function renderCarouselMedia() {
-            const container = document.getElementById('product-media-carousel');
-            if (!container) return;
-            container.innerHTML = '';
-            carouselMedia.forEach((media, index) => {
-                const item = document.createElement('div');
-                item.className = 'carousel-item';
-                if (index === 0) item.classList.add('active');
-                if (media.type === 'image') {
-                    item.innerHTML = `<img src="${media.src}" alt="Product Ad ${index + 1}" loading="lazy" />`;
-                } else if (media.type === 'video') {
-                    // تشغيل آلي ومكتوم للفيديوهات
-                    item.innerHTML = `<iframe width="100%" height="100%" src="${media.src}&autoplay=1&mute=1&loop=1&playlist=${media.src.split('/').pop().split('?')[0]}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                }
-                container.appendChild(item);
-            });
-            startCarousel();
-        }
-
-        function showNextMedia() {
-            const items = document.querySelectorAll('#product-media-carousel .carousel-item');
-            if (items.length === 0) return;
-            items[currentMediaIndex].classList.remove('active');
-            currentMediaIndex = (currentMediaIndex + 1) % items.length;
-            items[currentMediaIndex].classList.add('active');
-        }
-
-        function startCarousel() {
-            if (carouselInterval) clearInterval(carouselInterval);
-            carouselInterval = setInterval(showNextMedia, 5000); // تغيير كل 5 ثوانٍ
-        }
-
-        // =======================================================================
-        // --- وظائف الـ Chatbot ---
-        // =======================================================================
-        const chatbotButton = document.getElementById('chatbot-button');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const chatbotClose = document.getElementById('chatbot-close');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-
-        if (chatbotButton && chatbotWindow && chatbotClose && chatInput) {
-            chatbotButton.addEventListener('click', () => { chatbotWindow.classList.toggle('chatbot-hidden'); });
-            chatbotClose.addEventListener('click', () => { chatbotWindow.classList.add('chatbot-hidden'); });
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && chatInput.value.trim() !== '') {
-                    const userMessage = chatInput.value.trim();
-                    appendMessage(userMessage, 'user');
-                    processUserQuery(userMessage);
-                    chatInput.value = '';
-                }
-            });
-        }
-        
-        function appendMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('text-sm', 'p-2', 'rounded-lg', 'max-w-[80%]', 'clear-both', 'mb-2');
-            if (sender === 'user') { messageDiv.classList.add('bg-blue-600', 'text-white', 'float-left'); } else { messageDiv.classList.add('bg-gray-200', 'float-right'); }
-            messageDiv.textContent = text;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // =======================================================================
-        // --- وظائف الترحيب والـ PayPal ونموذج الاتصال ---
-        // =======================================================================
-
-        function showWelcomePopup() {
-            const popup = document.getElementById('welcome-popup');
-            if (popup) {
-                // إظهار النافذة بعد ثانية واحدة لمنع التعارض مع التحميل
-                setTimeout(() => { popup.classList.remove('hidden'); }, 1000);
-            }
-        }
-
-        function setPaymentLinks() {
-            // تحديث جميع أزرار PayPal بالرابط الصحيح
-            const paypalButtons = document.querySelectorAll('[id^="paypal-support-button"]');
-            paypalButtons.forEach(button => {
-                button.href = 'https://www.paypal.com/ncp/payment/QTMEP82WWYHQ2';
-            });
-        }
-        
-        /* // **تم حذف دالة handleContactFormSubmission لأننا نستخدم Formspree الآن**
-        function handleContactFormSubmission(e) {
-            e.preventDefault();
-            const emailField = document.getElementById('contact-email-link');
-            const targetEmail = emailField ? emailField.href.replace('mailto:', '') : 'a.laghrifi@outlook.fr';
-            
-            // محاكاة الإرسال
-            alert(`تم استلام رسالتك بنجاح! سيتم توجيهها إلى البريد الإلكتروني: ${targetEmail}.`);
-            this.reset();
-        }
-        */
-
-        // =======================================================================
-        // --- كود الحماية المتقدمة والمراقبة (RJ 1 Commerce Security) ---
-        // =======================================================================
-
-        // ملاحظة: يتم تعريف محتوى الجسم الأصلي عند تحميل DOM، لذا يجب أن يكون هذا التعريف داخل DOMContentLoaded
-        let originalBodyContent; 
-        const keyWords = ["RG1 Commerce", "a.laghrifi@outlook.fr", "المدونة", "المنتجات", "الشركاء"]; // الكلمات الأساسية للمراقبة
-
-        // 1. منع النسخ بالزر الأيمن و Ctrl+C
-        document.addEventListener('contextmenu', e => {
-            e.preventDefault();
-            alert("⛔ تم تعطيل خاصية الزر الأيمن لمنع النسخ والتعديل غير المصرح به (RJ 1 Commerce Security).");
-        });
-        document.addEventListener('keydown', e => {
-            // منع Ctrl+C (النسخ)
-            if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
-                e.preventDefault();
-                alert("⛔ تم تعطيل خاصية النسخ (Ctrl+C).");
-            }
-            // منع F12 (أدوات المطور) و Ctrl+Shift+I
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
-                e.preventDefault();
-                console.warn("محاولة فتح أدوات المطور تم رصدها.");
-            }
-        });
-
-        // 2. سجل محاولات التعديل (Log)
-        function logAttempt(action) {
-            const timestamp = new Date().toLocaleString();
-            console.error(`[SECURITY LOG - ${timestamp}] Unauthorized action: ${action}`);
-        }
-
-        // 3. مراقبة التغييرات (MutationObserver) وإعادة النص الأصلي
-        const observerConfig = {
-            childList: true, // مراقبة إضافة/حذف العناصر
-            subtree: true,   // مراقبة جميع الأحفاد
-            characterData: true, // مراقبة تغيير النصوص
-            attributes: true     // مراقبة تغيير الخصائص
-        };
-
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                // تجنب التكرار اللانهائي عبر التحقق من أن الكود الأصلي موجود
-                if (originalBodyContent) { 
-                    const currentContent = document.body.innerHTML;
-                    
-                    let tamperingDetected = false;
-                    for (const word of keyWords) {
-                        if (!currentContent.includes(word)) {
-                            tamperingDetected = true;
-                            logAttempt(`Attempt to remove/modify key word: ${word}`);
-                            break;
-                        }
-                    }
-
-                    if (tamperingDetected) {
-                        alert("🚨 تنبيه أمني: تم رصد محاولة تعديل على الكلمات الأساسية. سيتم استعادة المحتوى الأصلي.");
-                        
-                        // تعطيل المراقب قبل الاستعادة لتجنب التكرار
-                        observer.disconnect(); 
-                        
-                        document.body.innerHTML = originalBodyContent; // إعادة المحتوى الأصلي بالكامل
-                        
-                        // إعادة تهيئة الوظائف بعد الاستعادة
-                        applyLanguage(); 
-                        renderCarouselMedia();
-                        setPaymentLinks();
-                        setupContactFormListener(); // إعادة ربط الاستماع لـ Formspree
-                        
-                        // إعادة تفعيل المراقب
-                        setTimeout(() => { observer.observe(document.body, observerConfig); }, 500);
-                    }
-                }
-            });
-        });
-
-        // وظيفة لإعداد مستمع لنموذج Formspree
-        function setupContactFormListener() {
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                // **ملاحظة: Formspree لا يحتاج إلى مستمع submit في JS، ولكنه يستخدم POST المباشر.**
-                // **لتحسين تجربة المستخدم محليًا، يمكننا إضافة مستمع للتحقق من نجاح إرسال Formspree (يتم عبر iframe أو Fetch)**
-                // **لكننا سنكتفي بمسح النموذج بعد الإرسال لتبسيط الكود وحذف دالة handleContactFormSubmission المحذوفة.**
-
-                contactForm.addEventListener('submit', function(e) {
-                    // إذا نجح الإرسال إلى Formspree (يتم تحويل المتصفح أو معالجة AJAX)، يمكن استخدام alert بسيط للمستخدم
-                    // Formspree سيتعامل مع الـ action="POST" مباشرة.
-                    setTimeout(() => {
-                        // محاكاة تنبيه بسيط بعد الإرسال لإظهار تفاعل
-                        alert('✅ تم إرسال رسالتك بنجاح! شكراً لتواصلك مع RG1 Commerce.');
-                        contactForm.reset();
-                    }, 50); // تأخير بسيط
-                });
-            }
-        }
-
-        // =======================================================================
-        // --- الإطلاق النهائي (AUTO-INIT) ---
-        // =======================================================================
-        document.addEventListener('DOMContentLoaded', () => {
-            // حفظ المحتوى الأصلي بعد تحميل DOM وقبل تطبيق أي تحديثات ديناميكية
-            originalBodyContent = document.body.innerHTML; 
-
-            applyLanguage();
-            renderCarouselMedia();
-            setPaymentLinks();
-            showWelcomePopup();
-            setupContactFormListener(); // تهيئة مستمع النموذج ( Formspree )
-            
-            // إغلاق لوحة الترحيب
-            document.getElementById('close-popup').addEventListener('click', () => {
-                document.getElementById('welcome-popup').classList.add('hidden');
-            });
-
-            // إظهار زر الروبوت عند التمرير
-            if (chatbotButton) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 200) {
-                        chatbotButton.classList.remove('chatbot-hidden');
-                    } else {
-                        chatbotButton.classList.add('chatbot-hidden');
-                    }
-                });
-            }
-            
-            // تفعيل المراقبة بعد فترة وجيزة من انتهاء التحميل
-            setTimeout(() => { 
-                observer.observe(document.body, observerConfig);
-            }, 2000); 
-
-            console.log(`RG1 Commerce App Initialized: All requested features applied.`);
-        });
-    </script>
-</body>
-</html>
