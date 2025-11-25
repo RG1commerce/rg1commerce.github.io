@@ -234,7 +234,7 @@
         }
 
         .media-carousel {
-            height: 250px;
+            height: 200px; /* تم تصغير الارتفاع قليلاً بناءً على طلب المستخدم */
             overflow: hidden;
             position: relative;
             border-radius: 8px;
@@ -264,6 +264,20 @@
             height: 100%;
             object-fit: cover;
             border: none;
+        }
+        
+        /* تنسيق شبكة الصور الإعلانية الجديدة في الـ sidebar */
+        .sidebar-ad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* ثلاثة أعمدة */
+            gap: 5px; /* تباعد صغير */
+            margin-top: 15px;
+        }
+        .sidebar-ad-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
         }
 
         /* إخفاء الاسم الشخصي من واجهة معلومات الاتصال */
@@ -537,8 +551,17 @@
     <div id="app-container">
         <aside id="media-sidebar">
             <h2 style="font-size: 1.3em;">المنتجات المرئية</h2>
+            <p style="text-align: center; font-weight: bold; color: #DC2626; margin-bottom: 10px;">انقر لاكتشاف أحدث عروضنا الرقمية الآن!</p>
             <div id="product-media-carousel" class="media-carousel"></div>
             <p style="text-align: center; font-size: 0.9em; color: var(--text-secondary-light);">صور وفيديوهات إعلانية بدون أسعار - للتمرير التلقائي</p>
+            <div class="sidebar-ad-grid">
+                <img src="1764088277088.jpg" alt="صورة إعلانية 1" loading="lazy" />
+                <img src="1764088242221.jpg" alt="صورة إعلانية 2" loading="lazy" />
+                <img src="1764088346287.jpg" alt="صورة إعلانية 3" loading="lazy" />
+                <img src="1764088382317.jpg" alt="صورة إعلانية 4" loading="lazy" />
+                <img src="1764088465249.jpg" alt="صورة إعلانية 5" loading="lazy" />
+                <img src="1764088529801.jpg" alt="صورة إعلانية 6" loading="lazy" />
+            </div>
         </aside>
 
         <div id="main-content">
