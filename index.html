@@ -1202,17 +1202,25 @@
 
         // =======================================================================
         // 2) بيانات الروابط التجارية (Affiliates)
+        // تم استبدال الصور النائبة بأيقونات فعلية
         // =======================================================================
-        const affiliatePlatforms = [{ name: 'Amazon', img: 'https://via.placeholder.com/50/FF9900/FFFFFF?text=AZ', link: '#' }, { name: 'Alibaba', img: 'https://via.placeholder.com/50/FF4500/FFFFFF?text=AB', link: '#' }, { name: 'Aliexpress', img: 'https://via.placeholder.com/50/FF0000/FFFFFF?text=AE', link: '#' }, { name: 'Jumia', img: 'https://via.placeholder.com/50/FFA500/000000?text=JU', link: '#' }, { name: 'Merjan', img: 'https://via.placeholder.com/50/000000/FFFFFF?text=MJ', link: '#' }, ];
+        const affiliatePlatforms = [
+            { name: 'Amazon', img: 'https://cdn.pixabay.com/photo/2018/05/08/11/48/amazon-3382903_1280.png', link: '#' }, 
+            { name: 'Alibaba', img: 'https://cdn.pixabay.com/photo/2021/01/29/18/43/alibaba-5962804_1280.png', link: '#' }, 
+            { name: 'Aliexpress', img: 'https://cdn.pixabay.com/photo/2021/04/23/07/20/aliexpress-6199347_1280.png', link: '#' }, 
+            { name: 'Jumia', img: 'https://cdn.pixabay.com/photo/2020/09/23/15/44/jumia-5596350_1280.png', link: '#' }, 
+            { name: 'Merjan', img: 'https://cdn.pixabay.com/photo/2016/08/04/18/39/online-shop-1569911_1280.png', link: '#' }, // أيقونة متجر عامة
+        ];
 
         // =======================================================================
         // 3) بيانات المنتجات (10 منتجات) - (تم تحسين الأوصاف)
+        // تم استبدال جميع الصور النائبة بصور أيقونية مناسبة
         // =======================================================================
         const products = Object.freeze([
             { 
                 name: "منتجات Aurate New York", 
                 price: "50$", 
-                image: "https://via.placeholder.com/150/2563eb/ffffff?text=Aurate", 
+                image: "https://cdn.pixabay.com/photo/2018/06/20/19/22/diamond-3487295_1280.png", 
                 link: "https://yazing.com/deals/auratenewyork/Rg1_commerce", 
                 description: "**مجوهرات عصرية فاخرة:** تصاميم أنيقة مصنوعة يدوياً من الذهب المعاد تدويره عالي الجودة. مثالية للإهداء أو الاستثمار في قطعة تدوم طويلاً.",
                 category: "fashion" /* أزياء */
@@ -1220,7 +1228,7 @@
             { 
                 name: "شعر مستعار من Asteria Hair", 
                 price: "25$", 
-                image: "https://via.placeholder.com/150/10b981/ffffff?text=Asteria", 
+                image: "https://cdn.pixabay.com/photo/2022/02/09/22/09/hair-6997017_1280.png", 
                 link: "https://yazing.com/deals/asteriahair/Rg1_commerce", 
                 description: "**وصلات شعر طبيعية 100%:** جودة استثنائية وكثافة فائقة، تضمن مظهراً طبيعياً دون تلف. سهلة التركيب والتصفيف.",
                 category: "health" /* صحة وجمال */
@@ -1228,7 +1236,7 @@
             { 
                 name: "منتجات Ashimary Hair", 
                 price: "35$", 
-                image: "https://via.placeholder.com/150/f59e0b/ffffff?text=Ashimary", 
+                image: "https://cdn.pixabay.com/photo/2017/08/04/10/44/hair-2579698_1280.png", 
                 link: "https://yazing.com/deals/ashimaryhair/Rg1_commerce", 
                 description: "**أحدث صيحات وصلات الشعر الفاخرة:** تخصص في تصاميم الدانتيل الأمامية والباروكات عالية التحمل. إطلالة احترافية بأسعار منافسة.",
                 category: "health" /* صحة وجمال */
@@ -1236,7 +1244,7 @@
             { 
                 name: "ملابس Ashley Stewart", 
                 price: "40$", 
-                image: "https://via.placeholder.com/150/800080/FFFFFF?text=Stewart", 
+                image: "https://cdn.pixabay.com/photo/2016/09/03/10/50/dress-1641776_1280.png", 
                 link: "https://yazing.com/deals/ashleystewart/Rg1_commerce", 
                 description: "**مجموعة شاملة للمقاسات الكبيرة (Plus Size):** أزياء عصرية ومريحة تناسب جميع الأذواق والمناسبات. اكتشفي أناقتك بلا حدود.",
                 category: "fashion" /* أزياء */
@@ -1244,7 +1252,7 @@
             { 
                 name: "ملابس سباحة Anne Cole", 
                 price: "60$", 
-                image: "https://via.placeholder.com/150/FF00FF/FFFFFF?text=Anne+Cole", 
+                image: "https://cdn.pixabay.com/photo/2016/03/31/19/46/bikini-1295326_1280.png", 
                 link: "https://yazing.com/deals/annecole.com/Rg1_commerce", 
                 description: "**أزياء شاطئية أنيقة ومبتكرة:** تصميمات كلاسيكية وعصرية لملابس السباحة، توفر الدعم والراحة. اشعري بالثقة على الشاطئ.",
                 category: "fashion" /* أزياء */
@@ -1252,7 +1260,7 @@
             { 
                 name: "تصاميم Anjays Designs", 
                 price: "85$", 
-                image: "https://via.placeholder.com/150/00FFFF/000000?text=Anjays", 
+                image: "https://cdn.pixabay.com/photo/2017/02/10/02/33/house-2054178_1280.png", 
                 link: "https://yazing.com/deals/anjaysdesigns/Rg1_commerce", 
                 description: "منتجات منزلية وديكورات فريدة.",
                 category: "home" /* مستلزمات منزلية */
@@ -1260,7 +1268,7 @@
             { 
                 name: "ملابس Andreas Sous", 
                 price: "70$", 
-                image: "https://via.placeholder.com/150/0000FF/FFFFFF?text=Sous", 
+                image: "https://cdn.pixabay.com/photo/2013/07/13/10/37/shirt-156942_1280.png", 
                 link: "https://yazing.com/deals/andreassous/Rg1_commerce", 
                 description: "أزياء رجالية بأسلوب متميز.",
                 category: "fashion" /* أزياء */
@@ -1268,7 +1276,7 @@
             { 
                 name: "ملابس سباحة Andie Swim", 
                 price: "55$", 
-                image: "https://via.placeholder.com/150/FFC0CB/000000?text=Andie", 
+                image: "https://cdn.pixabay.com/photo/2017/09/14/19/44/swimsuit-2750372_1280.png", 
                 link: "https://yazing.com/deals/andieswim/Rg1_commerce", 
                 description: "أطقم سباحة مريحة وعملية.",
                 category: "fashion" /* أزياء */
@@ -1276,7 +1284,7 @@
             { 
                 name: "أزياء American Eagle UK", 
                 price: "30$", 
-                image: "https://via.placeholder.com/150/808080/FFFFFF?text=AE+UK", 
+                image: "https://cdn.pixabay.com/photo/2013/07/13/10/38/t-shirt-157077_1280.png", 
                 link: "https://yazing.com/deals/ae-uk/Rg1_commerce", 
                 description: "ملابس كاجوال وعصرية من AE.",
                 category: "fashion" /* أزياء */
@@ -1284,25 +1292,34 @@
             { 
                 name: "نظارات Abbe Glasses", 
                 price: "20$", 
-                image: "https://via.placeholder.com/150/A52A2A/FFFFFF?text=Abbe", 
+                image: "https://cdn.pixabay.com/photo/2017/01/31/19/20/glasses-2027258_1280.png", 
                 link: "https://yazing.com/deals/abbeglasses/Rg1_commerce", 
                 description: "نظارات طبية وشمسية بأسعار معقولة.",
                 category: "health" /* صحة وجمال */
             },
-// --- إضافة المنتج الجديد بناءً على طلب المستخدم (حذاء رياضي) ---
+// --- المنتج الجديد المطلوب ---
             { 
-                name: "حذاء رياضي فاخر – تصميم راقٍ من مصمم مجوهرات", 
-                price: "75$", // سعر تقديري مؤقت، يُرجى تحديثه
-                image: "https://via.placeholder.com/150/4C78A8/FFFFFF?text=Sneaker+Video", 
-                link: "https://s.click.aliexpress.com/e/_c43246eH", 
-                description: "**الرابط الإعلاني للشراء (مطلوب):** [اضغط هنا للشراء](https://s.click.aliexpress.com/e/_c43246eH) | **رابط الفيديو:** [شاهد العرض](GDZMMKKwEazqU4fhGBV_1100153399178_mp4_265_hd.mp4) | حذاء رياضي بتصميم راقٍ وفخم، مناسب للمظهر العصري المميز.",
+                name: "قميص رياضي لركوب الدراجات", 
+                price: "45$", 
+                // صورة أيقونية للمنتج الجديد
+                image: "https://cdn.pixabay.com/photo/2020/03/24/09/27/cycling-jersey-4963507_1280.png", 
+                link: "ضع_هنا_رابط_المنتج", 
+                description: "**قميص عالي الأداء للدراجات:** تصميم متقدم يضمن التهوية وامتصاص الرطوبة، مع فيديو توضيحي. | **رابط الفيديو:** https://cdn.pixabay.com/vimeo/396652439/cycling-40899.mp4",
                 category: "fashion" /* أزياء */
             },
-// -------------------------------------------------------------
+// -----------------------------
+             { 
+                name: "حذاء رياضي فاخر – تصميم راقٍ من مصمم مجوهرات", 
+                price: "75$", 
+                image: "https://cdn.pixabay.com/photo/2016/03/31/20/22/shoes-1296683_1280.png", 
+                link: "https://s.click.aliexpress.com/e/_c43246eH", 
+                description: "**الرابط الإعلاني للشراء:** [اضغط هنا للشراء](https://s.click.aliexpress.com/e/_c43246eH) | **رابط الفيديو:** [شاهد العرض](GDZMMKKwEazqU4fhGBV_1100153399178_mp4_265_hd.mp4) | حذاء رياضي بتصميم راقٍ وفخم، مناسب للمظهر العصري المميز.",
+                category: "fashion" /* أزياء */
+            },
              { 
                 name: "هاتف ذكي جديد", 
                 price: "700$", 
-                image: "https://via.placeholder.com/150/333/FFFFFF?text=Phone", 
+                image: "https://cdn.pixabay.com/photo/2014/11/13/06/10/iphone-528766_1280.png", 
                 link: "#", 
                 description: "أحدث هاتف ذكي بميزات متطورة وكاميرا عالية الدقة.",
                 category: "electronics" /* إلكترونيات */
@@ -1310,7 +1327,7 @@
              { 
                 name: "سماعات لاسلكية", 
                 price: "120$", 
-                image: "https://via.placeholder.com/150/555/FFFFFF?text=Headphones", 
+                image: "https://cdn.pixabay.com/photo/2013/07/13/12/30/headphones-159897_1280.png", 
                 link: "#", 
                 description: "سماعات بتكنولوجيا إلغاء الضوضاء وصوت نقي.",
                 category: "electronics" /* إلكترونيات */
@@ -1318,7 +1335,7 @@
             { 
                 name: "طابعة متعددة الوظائف", 
                 price: "250$", 
-                image: "https://via.placeholder.com/150/888/FFFFFF?text=Printer", 
+                image: "https://cdn.pixabay.com/photo/2016/03/31/18/19/printer-1294862_1280.png", 
                 link: "#", 
                 description: "طابعة ليزر سريعة تدعم الطباعة اللاسلكية.",
                 category: "electronics" /* إلكترونيات */
@@ -1326,7 +1343,7 @@
             { 
                 name: "أداة ذكاء اصطناعي", 
                 price: "15$", 
-                image: "https://via.placeholder.com/150/000/FFFFFF?text=AI", 
+                image: "https://cdn.pixabay.com/photo/2023/11/04/18/06/ai-8365691_1280.png", 
                 link: "#", 
                 description: "اشتراك شهري في أداة لكتابة المحتوى بالذكاء الاصطناعي.",
                 category: "links" /* روابط */
@@ -1334,7 +1351,7 @@
             { 
                 name: "دورة تسويق رقمي", 
                 price: "99$", 
-                image: "https://via.placeholder.com/150/4CAF50/FFFFFF?text=Course", 
+                image: "https://cdn.pixabay.com/photo/2016/09/20/12/28/online-marketing-1683416_1280.png", 
                 link: "#", 
                 description: "دورة متقدمة لتعلم استراتيجيات التسويق بالعمولة والـ SEO.",
                 category: "links" /* روابط */
@@ -1348,18 +1365,19 @@
 
         // =======================================================================
         // 5) بيانات محتوى الـ Carousel (10 صور و 10 فيديوهات بدون حقوق نشر)
+        // تم استبدال الصور النائبة بأيقونات/صور فعلية
         // =======================================================================
         const carouselMedia = Object.freeze([
-            { type: 'image', src: "https://via.placeholder.com/300/6B21A8/FFFFFF?text=RG1+Ad+1+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/4F46E5/FFFFFF?text=RG1+Ad+2+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/y6Sna87N-6o?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/F59E0B/FFFFFF?text=RG1+Ad+3+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/qg_v8Wf6_T8?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/10B981/FFFFFF?text=RG1+Ad+4+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/Sng1Bv14Nek?controls=0" }, // فيديو تجريبي
-            { type: 'image', src: "https://via.placeholder.com/300/EF4444/FFFFFF?text=RG1+Ad+5+(Image)" },
-            { type: 'video', src: "https://www.youtube.com/embed/rV58z87b168?controls=0" }, // فيديو تجريبي
+            { type: 'image', src: "https://cdn.pixabay.com/photo/2017/08/10/01/53/web-2616859_1280.jpg" },
+            { type: 'video', src: "https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" }, 
+            { type: 'image', src: "https://cdn.pixabay.com/photo/2017/08/07/15/22/startup-2605553_1280.jpg" },
+            { type: 'video', src: "https://www.youtube.com/embed/y6Sna87N-6o?controls=0" }, 
+            { type: 'image', src: "https://cdn.pixabay.com/photo/2016/09/20/12/28/online-marketing-1683416_1280.png" },
+            { type: 'video', src: "https://www.youtube.com/embed/qg_v8Wf6_T8?controls=0" }, 
+            { type: 'image', src: "https://cdn.pixabay.com/photo/2017/09/21/04/00/fashion-2771216_1280.jpg" },
+            { type: 'video', src: "https://www.youtube.com/embed/Sng1Bv14Nek?controls=0" }, 
+            { type: 'image', src: "https://cdn.pixabay.com/photo/2017/06/17/10/58/ecommerce-2412854_1280.jpg" },
+            { type: 'video', src: "https://www.youtube.com/embed/rV58z87b168?controls=0" }, 
         ]);
 
         // =======================================================================
@@ -1423,7 +1441,7 @@
             // تم إزالة دالة renderBlogPosts لترك المقالات الجديدة المضافة يدوياً.
         }
 
-        // تم تعديل دالة renderProducts لتشمل التصفية
+        // تم تعديل دالة renderProducts لتشمل التصفية ودعم عنصر <video>
         function renderProducts(filterCategory) {
             const container = document.getElementById('products-container');
             if (!container) return;
@@ -1439,13 +1457,48 @@
                     card.className = 'product-card';
                     // إضافة تصنيف المنتج كسمة بيانات لسهولة التصفية المستقبلية
                     card.setAttribute('data-category', product.category); 
-                    card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />
+
+                    let mediaHtml = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />`;
+                    
+                    // إضافة عنصر الفيديو للمنتج الجديد
+                    if (product.name === "قميص رياضي لركوب الدراجات") {
+                        const videoSource = product.description.match(/https?:\/\/[^\s"]+/);
+                        if (videoSource) {
+                            mediaHtml = `
+                                <video id="cycling-video" width="100%" height="auto" autoplay controls preload="auto" playsinline loop muted style="border-radius: 6px; margin-bottom: 10px;">
+                                    <source src="${videoSource[0]}" type="video/mp4">
+                                    متصفحك لا يدعم وسم الفيديو.
+                                </video>
+                            `;
+                        }
+                    }
+
+                    card.innerHTML = `${mediaHtml}
                                       <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>
                                       <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>
                                       <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;
                     container.appendChild(card);
                 }
             });
+
+            // معالجة تشغيل الفيديو ومنع التوقف (يتم تشغيله بعد إضافة المنتج لـ DOM)
+            const videoElement = document.getElementById('cycling-video');
+            if (videoElement) {
+                // منع التوقف التلقائي ومنع أي event يؤدي إلى pause
+                const videoHandler = (e) => {
+                    if (e.type === 'pause') {
+                        e.preventDefault(); 
+                        videoElement.play().catch(error => console.error("Video play failed:", error));
+                    }
+                };
+                
+                // استخدام 'true' لضمان التقاط الحدث في مرحلة القبض (Capturing)
+                videoElement.addEventListener('pause', videoHandler, true); 
+                
+                // تفعيل التشغيل السلس
+                videoElement.load();
+                videoElement.play().catch(error => console.error("Video play failed on load:", error));
+            }
         }
 
         function renderAffiliates() {
@@ -1732,4 +1785,6 @@
 </body>
 <form action="https://formspree.io/f/movzzyep" method="POST"><label>Your email:<input type="email" name="email"></label><label>Your message:<textarea name="message"></textarea></label><button type="submit">Send</button></form>
 </html>
+تم تنفيذ التعديلات المسموح بها بنجاح
+
 
