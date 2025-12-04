@@ -22,112 +22,266 @@
     <!-- End Google AdSense code -->         
          
     <style>         
-        /* الألوان المطلوبة لـ RG1Shop */         
-        :root {         
-            --bg-light: #f7f7fb;         
-            --bg-card-light: white;         
-            --text-color-light: #1f2937;         
-            --text-secondary-light: #6b7280;         
-            --color-blue: #2563eb;         
-            /* الألوان المطلوبة */         
-            --rg1-primary-color: #6B21A8; /* بنفسجي غامق */         
-            --rg1-light-bg: #F5F0FA; /* بنفسجي فاتح للخلفية العامة */         
-            --rg1-card-bg: #FFFFFF; /* بطاقات بيضاء */         
-            --rg1-text-dark: #1F2937;         
-            --rg1-cookie-bg: #4A0E7E; /* لون خلفية الكوكيز */         
-        }         
-         
-        html.dark {         
+        /* ============================================================
+           الخطوط الحديثة
+           ============================================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background: linear-gradient(135deg, #0d0f1a, #111320, #14172b);
+          background-attachment: fixed;
+          margin: 0;
+          padding: 0;
+          color: #e4e6f3; /* لون نص أساسي فاتح للخلفية الداكنة */
+          direction: rtl; /* حافظنا على اتجاه النص */
+        }
+
+        /* ============================================================
+           ألوان ثانوية لإضافات التميز
+           ============================================================ */
+        :root {
+          --accent-primary: #6366f1;      /* الأزرق البنفسجي الفاخر */
+          --accent-secondary: #00e0ff;    /* الفيروزي */
+          --accent-highlight: #facc15;    /* الأصفر */
+          --accent-success: #4ade80;      /* الأخضر */
+
+          /* الألوان الأصلية لـ RG1Shop، تم تعديل بعضها ليتوافق مع النمط الداكن */
+          --bg-light: #1f2937; /* لم يعد يستخدم كخلفية رئيسية */
+          --bg-card-light: rgba(255, 255, 255, 0.07); /* تم تعديله ليتوافق مع Glassmorphism */
+          --text-color-light: #f3f4f6; /* لون نص فاتح */
+          --text-secondary-light: #d1d5db; /* لون نص ثانوي فاتح */
+          --color-blue: var(--accent-primary); /* ربط بالأزرق البنفسجي الجديد */
+          --rg1-primary-color: var(--accent-primary); /* ربط بالأزرق البنفسجي الجديد */
+          --rg1-light-bg: transparent; /* لم يعد يستخدم، الخلفية هي body */
+          --rg1-card-bg: rgba(255, 255, 255, 0.07); /* ربط بـ Glassmorphism */
+          --rg1-text-dark: #e4e6f3; /* ربط بلون نص الـ body الجديد */
+          --rg1-cookie-bg: #14172b; /* لون خلفية الكوكيز داكن ومتناسق */
+        }
+
+        html.dark {
+            /* في النمط الداكن، القيم الحالية هي بالفعل داكنة، لذا نتركها أو نعيد تعيينها لضمان التناسق */
             --bg-light: #1f2937;         
-            --bg-card-light: #374151;         
+            --bg-card-light: rgba(255, 255, 255, 0.07);         
             --text-color-light: #f3f4f6;         
             --text-secondary-light: #d1d5db;         
-            --color-blue: #60a5fa;         
-            --rg1-card-bg: #374151;         
-            --rg1-light-bg: #291D3A;         
+            --color-blue: var(--accent-primary);         
+            --rg1-card-bg: rgba(255, 255, 255, 0.07);         
+            --rg1-light-bg: transparent;         
             --rg1-text-dark: #f3f4f6;         
-        }         
+            --rg1-cookie-bg: #14172b; 
+        }
+        /* ============================================================
+           الصناديق + تأثير الزجاج Glassmorphism
+           ============================================================ */
+        .card, .box, .section, .container, .panel, .content-box {
+          background: rgba(255, 255, 255, 0.07);
+          backdrop-filter: blur(12px);
+          border-radius: 14px;
+          padding: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          /* ضمان أن تنسيقات البطاقات الأصلية تتوافق */
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* ظل ناعم */
+          transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        /* خيار صناديق فيها تدرج ثانوي */
+        .card-gradient, .box-gradient {
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(0, 224, 255, 0.12)
+          );
+          border: 1px solid rgba(0, 224, 255, 0.25);
+        }
+
+        /* ============================================================
+           الأزرار — Button Styling
+           ============================================================ */
+        button, .btn {
+          background: linear-gradient(135deg, #4f46e5, var(--accent-primary));
+          padding: 12px 22px;
+          border: none;
+          border-radius: 12px;
+          color: #ffffff !important;
+          font-weight: 600;
+          cursor: pointer;
+          transition: 0.25s ease, transform 0.25s ease;
+        }
+
+        button:hover, .btn:hover {
+          opacity: 0.85;
+          transform: translateY(-3px) scale(1.03);
+          box-shadow: 0 0 18px var(--accent-secondary);
+        }
+
+        /* ============================================================
+           الأيقونات — Icons
+           ============================================================ */
+        i, svg, .icon {
+          color: #9aa1ff !important;
+          transition: 0.25s ease;
+        }
+
+        i:hover, svg:hover, .icon:hover {
+          color: #ffffff !important;
+          text-shadow: 0 0 10px var(--accent-secondary);
+        }
+
+        /* ============================================================
+           الروابط — Links
+           ============================================================ */
+        a {
+          color: #818cf8;
+          transition: 0.25s ease;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: #a5b4ff;
+          text-shadow: 0 0 10px var(--accent-primary);
+        }
+
+        /* ============================================================
+           العناوين — Typography
+           ============================================================ */
+        h1, h2, h3, h4, h5 {
+          color: #d7dbff; /* لون فاتح للعناوين */
+          font-weight: 700;
+          text-shadow: 0 0 8px rgba(0, 224, 255, 0.25);
+        }
+
+        p, span, li {
+          color: #c7c9e6; /* لون فاتح للنصوص العادية */
+        }
+
+        /* نصوص مميزة */
+        .text-highlight {
+          color: var(--accent-highlight) !important;
+          font-weight: 700;
+        }
+
+        /* ============================================================
+           الصور — Images
+           ============================================================ */
+        img, .image, .photo {
+          border-radius: 14px;
+        }
+        
+        /* حركة Hover لطيفة للصور */
+        img:hover {
+          transform: scale(1.03);
+          transition: 0.4s ease;
+        }
+
+        /* ============================================================
+           فواصل — HR
+           ============================================================ */
+        hr {
+          border-color: rgba(255, 255, 255, 0.10);
+        }
+
+        hr.spark {
+          border: 0;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--accent-secondary), transparent);
+        }
+
+        /* ============================================================
+           الظلال — Shadows
+           ============================================================ */
+        .shadow-soft {
+          box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+        }
+
+        /* ============================================================
+           لمسات إضافية متطورة 2025
+           ============================================================ */
+
+        /* إضاءة على الحواف */
+        .glow-border {
+          border: 1px solid var(--accent-secondary) !important;
+          box-shadow: 0 0 15px rgba(0,224,255,0.3);
+        }
+
+        /* حركة دخول ناعمة */
+        .fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+          opacity: 0;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ------------------------------------------------------------
+           الأنماط الأصلية لـ RG1Shop (مع تعديلات لدمج النمط الجديد)
+           ------------------------------------------------------------ */
          
-        body {         
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;         
-            background: var(--rg1-light-bg);         
-            margin: 0;         
-            padding: 0;         
-            transition: background 0.3s;         
-            color: var(--rg1-text-dark);         
-            direction: rtl;         
-            /* --- التعديل 5 (تم إزالته لتثبيت الـ nav فقط): إضافة تباعد علوي لتجنب حجب المحتوى بواسطة شريط التنقل المثبت --- */         
-            /* padding-top: 100px; */          
-            /* ===== تعويض الهيدر الثابت الجديد ===== */         
-            /* تم التعديل ليناسب ارتفاع الـ nav المثبتة الجديدة فقط */         
-            /* التعديل: تباعد علوي جديد ليناسب الـ nav المضغوطة ذات الشريطين */         
+        /* التباعد العلوي للصفحة ليناسب الـ nav الثابتة */         
+        body {          
             padding-top: 130px;          
-            /* إضافة تباعد سفلي ليناسب الشريط السفلي الجديد */         
             padding-bottom: 50px;          
         }         
                  
-        /* ===== تنسيق لوحة التنقل (الـ nav) وتثبيتها كأزرار - NEW STYLES ===== */         
+        /* لوحة التنقل (الـ nav) وتثبيتها كأزرار */         
         .main-nav {         
-            /* 1️⃣ التعديل: تثبيت لوحة التنقل بالكامل في الأعلى */         
             position: fixed;         
             top: 0;         
             left: 0;         
             width: 100%;         
-            /* التعديل: استخدام لون داكن لخلفية الشريطين */         
-            background: var(--rg1-cookie-bg);          
+            background: var(--rg1-cookie-bg); /* استخدام لون داكن متناسق */          
             padding: 0;         
-            display: block; /* تغيير من flex: column إلى block للسماح بتنسيق الشريطين */         
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);         
+            display: block;         
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* ظل أغمق ليتناسب مع الخلفية الداكنة */         
             z-index: 9999;         
         }         
                  
         .nav-links-container {         
-            /* 1️⃣ التعديل: جعل الروابط في صفين أفقيين (لتحقيق تأثير الشريطين) */         
             display: flex;         
-            flex-direction: row; /* تغيير من عمودي إلى أفقي */         
-            flex-wrap: wrap; /* السماح بالالتفاف لإنشاء الشريط الثاني */         
-            justify-content: space-between; /* توزيع الروابط لتأخذ عرض الصفحة */         
+            flex-direction: row;         
+            flex-wrap: wrap;         
+            justify-content: space-between;         
             align-items: center;         
-            gap: 10px; /* المسافة المطلوبة بين الأزرار */         
+            gap: 10px;         
             padding: 10px 20px 15px 20px;         
             width: 100%;         
-            box-sizing: border-box; /* لضمان أن العرض 100% يشمل الـ padding */         
-        }         
-         
-        .main-nav a {         
-            /* 1️⃣ التعديل: تنسيق الزر المضغوط (4 أزرار في الصف (23% لتناسب المسافات) */         
-            font-weight: bold;         
-            text-decoration: none;         
-            color: white;         
-            padding: 8px 10px; /* تباعد أصغر لضغط الارتفاع */         
-            border-radius: 6px; /* نصف قطر أصغر */         
-            background: var(--rg1-primary-color);          
-            border: 2px solid var(--rg1-primary-color);         
-            transition: 0.3s;         
-            font-size: 13px; /* حجم خط أصغر */         
-            text-align: center;         
-            width: 23%;         
-            box-shadow: 0 0 8px rgba(0,0,0,0.15);         
             box-sizing: border-box;         
         }         
          
-        /* ===== تأثيرات التحويم على الأزرار (تم تبسيطها) ===== */         
-        .main-nav a:hover {         
-            background: var(--color-blue);         
+        .main-nav a {         
+            font-weight: bold;         
+            text-decoration: none;         
             color: white;         
-            transform: none; /* إزالة التكبير ليتناسب مع التصميم المضغوط */         
-            box-shadow: none; /* إزالة الظل عند التحويم */         
+            padding: 8px 10px;         
+            border-radius: 6px;         
+            background: var(--rg1-primary-color);          
+            border: 2px solid var(--rg1-primary-color);         
+            transition: 0.3s;         
+            font-size: 13px;         
+            text-align: center;         
+            width: 23%;         
+            box-shadow: 0 0 8px rgba(0,0,0,0.25); /* ظل متناسق مع النمط الجديد */         
+            box-sizing: border-box;         
+        }         
+         
+        /* تأثيرات التحويم على الأزرار */         
+        .main-nav a:hover {         
+            background: var(--color-blue); /* سيستخدم --accent-primary */         
+            color: white;         
+            transform: none;          
+            box-shadow: 0 0 10px rgba(0, 224, 255, 0.3); /* توهج متناسق */         
             border-color: var(--color-blue);         
         }         
                  
         /* إعادة تنسيق رابط نشط ليناسب الزر الجديد */         
         .main-nav a.active-link {         
             color: white !important;         
-            background: #DC2626 !important;         
+            background: #DC2626 !important; /* لون نشط مميز */         
             border-color: #DC2626 !important;         
-            transform: none; /* إزالة الـ translateY */         
+            transform: none;          
         }         
-        /* --- END NEW STYLES --- */         
          
         #app-container {         
             display: flex;         
@@ -143,15 +297,12 @@
             padding: 0 20px;         
         }         
          
-        /* --- تم إلغاء تثبيت الهيدر والـ nav القديم --- */         
         header {         
             display: flex;         
             flex-direction: column;         
             align-items: center;         
             margin-bottom: 20px;         
-            padding-top: 0; /* تم إزالة الـ padding-top */         
-            width: 100%;         
-            /* تمت إزالة التثبيت */         
+            padding-top: 0;         
             position: static;          
             top: auto;         
             left: auto;         
@@ -161,23 +312,21 @@
             box-shadow: none;         
         }         
          
-        /* التعديل: إزالة الشعار بالكامل */         
         header .logo-container {         
             display: none;         
         }         
          
         .logo-container img {         
-            height: 120px; /* حجم كبير للشعار */         
+            height: 120px;         
             width: auto;         
             object-fit: contain;         
         }         
                  
-        /* --- تم إزالة تنسيقات nav القديمة --- */         
         nav {         
-            display:block; /* تم إعادة التفعيل لاستخدام .main-nav */         
+            display:block;         
         }         
-        /* --- نهاية تعديلات الـ <nav> القديمة --- */         
          
+        /* الأزرار العامة */
         .btn {         
             padding: 8px 12px;         
             border-radius: 8px;         
@@ -186,7 +335,7 @@
             color: white;         
             border: none;         
             transition: background 0.3s;         
-            text-decoration: none; /* لضمان عدم وجود خط تحت الروابط الأزرار */         
+            text-decoration: none;         
         }         
          
         .hidden {         
@@ -199,13 +348,15 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));         
         }         
          
+        /* البطاقات (cards) تم تكييفها مع النمط الجديد */
         .card {         
-            background: var(--rg1-card-bg);         
+            background: var(--rg1-card-bg); /* سيستخدم Glassmorphism */         
             padding: 20px;         
-            border-radius: 12px;         
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);         
+            border-radius: 14px; /* زوايا موحدة */         
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* ظل أغمق */         
             margin-top: 20px;         
             transition: background 0.3s, box-shadow 0.3s;         
+            border: 1px solid rgba(255, 255, 255, 0.08); /* حدود Glassmorphism */
         }         
          
         .card h2 {         
@@ -214,24 +365,24 @@
             border-bottom: 2px solid var(--rg1-primary-color);         
             padding-bottom: 5px;         
             margin-bottom: 15px;         
+            text-shadow: 0 0 5px rgba(0, 224, 255, 0.15); /* ظل خفيف للعناوين */
         }         
          
         .product-card, .affiliate-link-card {         
-            border: 1px solid #eee;         
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);         
+            border: 1px solid rgba(255, 255, 255, 0.08); /* حدود Glassmorphism */         
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* ظل متناسق */         
             padding: 12px;         
             margin: 10px 0;         
             transition: all 0.2s;         
-            border-radius: 8px;         
+            border-radius: 14px; /* زوايا موحدة */         
             text-align: center;         
-            background: var(--bg-card-light);         
+            background: var(--bg-card-light); /* خلفية Glassmorphism */
         }         
          
         .product-card:hover, .affiliate-link-card:hover {         
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);         
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* ظل أعمق عند التحويم */         
             transform: translateY(-2px);         
         }         
-        /* لإخفاء بطاقات المنتجات عند التصفية */         
         .product-card.hidden-by-filter {         
             display: none;         
         }         
@@ -241,24 +392,24 @@
             width: 300px;         
             margin-right: 20px;         
             padding: 15px;         
-            background: var(--rg1-card-bg);         
-            border-radius: 12px;         
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);         
+            background: var(--rg1-card-bg); /* خلفية Glassmorphism */         
+            border-radius: 14px;         
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* ظل أغمق */         
             position: sticky;         
-            /* تم تعديل القيمة لتناسب الـ nav المثبتة الجديدة */         
             top: 90px;          
             height: fit-content;         
             align-self: flex-start;         
             z-index: 500;         
+            border: 1px solid rgba(255, 255, 255, 0.08); /* حدود Glassmorphism */
         }         
          
         .media-carousel {         
-            height: 200px; /* تم تصغير الارتفاع قليلاً بناءً على طلب المستخدم */         
+            height: 200px;         
             overflow: hidden;         
             position: relative;         
-            border-radius: 8px;         
+            border-radius: 14px;         
             margin-bottom: 15px;         
-            background-color: var(--rg1-light-bg);         
+            background-color: transparent; /* خلفية شفافة */
         }         
          
         .carousel-item {         
@@ -268,7 +419,7 @@
             top: 0;         
             left: 0;         
             opacity: 0;         
-            transition: opacity 1s ease-in-out; /* تأثير Fade */         
+            transition: opacity 1s ease-in-out;         
             display: flex;         
             justify-content: center;         
             align-items: center;         
@@ -288,14 +439,14 @@
         /* تنسيق شبكة الصور الإعلانية الجديدة في الـ sidebar */         
         .sidebar-ad-grid {         
             display: grid;         
-            grid-template-columns: repeat(3, 1fr); /* ثلاثة أعمدة */         
-            gap: 5px; /* تباعد صغير */         
+            grid-template-columns: repeat(3, 1fr);         
+            gap: 5px;         
             margin-top: 15px;         
         }         
         .sidebar-ad-grid img {         
             width: 100%;         
             height: auto;         
-            border-radius: 4px;         
+            border-radius: 10px; /* زوايا أنعم */         
             object-fit: cover;         
         }         
          
@@ -306,16 +457,18 @@
          
         /* Chatbot Styles */         
         .chatbot-window {          
-            z-index: 10000; /* قيمة عالية ليكون فوق الكل */         
+            z-index: 10000;         
             border: 2px solid var(--rg1-primary-color);         
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);         
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* ظل أغمق */         
             position: fixed;         
             bottom: 80px;          
             right: 20px;          
             width: 320px;          
             max-width: 90%;          
             padding: 12px;         
-            border-radius: 12px;         
+            border-radius: 14px;         
+            background: rgba(255, 255, 255, 0.07); /* Glassmorphism */
+            backdrop-filter: blur(12px);
         }         
         #chatbot-button {          
             background: #10b981;          
@@ -324,14 +477,14 @@
             right: 20px;          
             z-index: 10001;          
             font-weight: bold;         
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);         
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);         
         }         
         .chatbot-hidden { display: none !important; }         
         .float-left { float: left; }         
         .float-right { float: right; }         
         .bg-blue-600 { background: var(--color-blue); }         
         .text-white { color: white; }         
-        .bg-gray-200 { background: #e5e7eb; color: #1f2937; }         
+        .bg-gray-200 { background: #4b5563; color: white; } /* ألوان متناسقة مع الداكن */         
         html.dark .bg-gray-200 { background: #4b5563; color: white; }         
          
         /* Welcome Pop-up Styles */         
@@ -340,19 +493,21 @@
             top: 50%;         
             left: 50%;         
             transform: translate(-50%, -50%);         
-            background: var(--rg1-card-bg);         
+            background: var(--rg1-card-bg); /* Glassmorphism */         
             border: 3px solid var(--rg1-primary-color);         
             padding: 30px;         
             border-radius: 15px;         
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);         
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* ظل أغمق وأبرز */         
             z-index: 10002;         
             text-align: center;         
             max-width: 80%;         
+            backdrop-filter: blur(12px);
         }         
         #welcome-popup h2 {         
             color: var(--rg1-primary-color);         
             margin-top: 0;         
             font-size: 1.8em;         
+            text-shadow: 0 0 5px rgba(0, 224, 255, 0.15); /* ظل خفيف للعناوين */
         }         
         #welcome-popup p {         
             color: var(--rg1-text-dark);         
@@ -367,7 +522,7 @@
         .ad-link-icon {         
             font-size: 1.5em;         
             margin-left: 10px;         
-            color: var(--rg1-primary-color);         
+            color: var(--rg1-primary-color) !important; /* ضمان تطبيق اللون */         
         }         
                  
         /* --- COOKIE BANNER STYLES --- */         
@@ -376,12 +531,12 @@
             top: 0;         
             left: 0;         
             width: 100%;         
-            background-color: var(--rg1-cookie-bg);          
+            background-color: var(--rg1-cookie-bg); /* لون داكن متناسق */          
             color: white;         
             text-align: center;         
             padding: 10px 20px;         
             z-index: 9999;         
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);         
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);         
             display: flex;         
             justify-content: center;         
             align-items: center;         
@@ -392,6 +547,7 @@
         #cookie-banner p {         
             margin: 0;         
             font-size: 0.9em;         
+            color: #c7c9e6; /* لون نص فاتح */
         }         
          
         #cookie-banner button {         
@@ -408,21 +564,19 @@
         #cookie-banner button:hover {         
             opacity: 0.9;         
         }         
-        /* --- END COOKIE BANNER STYLES --- */         
          
         /* --- BLOG GRID STYLES (3/2/1) --- */         
         #blog-container {         
             display: grid;         
             gap: 20px;         
-            /* Default: 3 columns (min-width of 300px for each) */         
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));          
         }         
          
         .blog-card {         
-            background: var(--bg-card-light);         
+            background: var(--bg-card-light); /* Glassmorphism */         
             padding: 20px;         
-            border-radius: 12px;         
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);         
+            border-radius: 14px; /* زوايا موحدة */         
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);         
             transition: all 0.2s;         
             border: 1px solid var(--rg1-primary-color);         
             display: flex;         
@@ -430,14 +584,14 @@
         }         
          
         .blog-card:hover {         
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);         
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* ظل أعمق */         
             transform: translateY(-4px);         
         }         
          
         .blog-card img {         
             width: 100%;         
             height: auto;         
-            border-radius: 8px;         
+            border-radius: 14px; /* زوايا موحدة */         
             margin-bottom: 15px;         
             object-fit: cover;         
         }         
@@ -449,19 +603,28 @@
             margin-bottom: 10px;         
             padding-bottom: 5px;         
             border-bottom: 1px dashed var(--rg1-primary-color);         
+            text-shadow: 0 0 5px rgba(0, 224, 255, 0.15);
         }         
          
         .blog-card h4 {         
-            color: #2563eb;         
+            color: var(--accent-secondary); /* استخدام الفيروزي للعناوين الثانوية */         
             font-size: 1.1em;         
             margin-top: 15px;         
             margin-bottom: 8px;         
+            text-shadow: 0 0 3px rgba(0, 224, 255, 0.1);
         }         
          
         .blog-card p {         
             font-size: 0.95em;         
             line-height: 1.6;         
+            color: #c7c9e6; /* لون نص فاتح */
         }         
+
+        .adsense-placeholder {
+            background: rgba(255, 255, 255, 0.05) !important; /* خلفية متناسقة مع الداكن */
+            border: 1px dashed var(--rg1-primary-color) !important;
+            color: var(--rg1-primary-color) !important;
+        }
          
         /* Responsive */         
         @media (max-width: 1200px) {         
@@ -477,17 +640,12 @@
         }         
          
         @media (max-width: 1024px) {         
-            /* Tablet: will likely show 2 columns */         
             #blog-container {         
                 grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));          
             }         
         }         
          
         @media (max-width: 768px) {         
-            /* تم إزالة تنسيق الشعار الملغي */         
-            /* .logo-container img {         
-                height: 90px;         
-            } */         
             #main-content {         
                 padding: 0 10px;         
             }         
@@ -497,50 +655,43 @@
             .card {         
                 padding: 15px;         
             }         
-            /* Mobile: 1 column */         
             #blog-container {         
                 grid-template-columns: 1fr;         
             }         
-            /* تقليل التباعد العلوي في الأجهزة الصغيرة */         
-            /* التعديل: تباعد علوي أصغر ليناسب الـ nav المضغوطة على الجوال */         
             body {          
                 padding-top: 110px;          
-                padding-bottom: 50px; /* تباعد سفلي للجوال */         
+                padding-bottom: 50px;         
             }          
             header { padding-top: 10px; margin-bottom: 10px; }         
-            /* 1️⃣ التعديل: تنسيق الـ nav على الجوال (4 أزرار في الصف) */         
             .nav-links-container {          
                 gap: 5px;          
                 padding: 5px 5px 5px 5px;          
                 justify-content: space-between;          
             }         
             .main-nav a {          
-                width: 23%; /* Force 4 per row */         
+                width: 23%;         
                 font-size: 10px;          
                 padding: 6px 4px;          
             }         
         }         
-        /* --- END BLOG GRID STYLES --- */         
                  
         /* --- NEW TAB STYLES --- */         
-        /* أخفاء جميع الأقسام بشكل افتراضي */         
         .section {         
           display: none;         
         }         
          
-        /* عرض القسم النشط */         
         .section.active {         
           display: block;         
         }         
-        /* --- END NEW TAB STYLES --- */         
                  
-        /* 6️⃣ التعديل: تنسيقات قسم "من نحن" */         
+        /* تنسيقات قسم "من نحن" */         
         #about {         
             margin: 40px 0;         
         }         
         #about p {         
             line-height: 1.8;         
             font-size: 18px;         
+            color: #c7c9e6; /* لون نص فاتح */
         }         
                  
         /* ===== شريط المنتجات الثابت السفلي الجديد (Fixed Bottom Bar) ===== */         
@@ -549,21 +700,20 @@
             bottom: 0;         
             left: 0;         
             width: 100%;         
-            height: 50px; /* الارتفاع المطلوب (0.5 سم تقريباً) */         
+            height: 50px;         
             background-color: var(--rg1-cookie-bg);          
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);         
-            z-index: 9998; /* أقل من الـ nav العلوية والروبوت */         
-            display: none; /* مخفي بشكل افتراضي */         
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);         
+            z-index: 9998;         
+            display: none;         
             justify-content: space-around;         
             align-items: center;         
             padding: 0 5px;         
             box-sizing: border-box;         
-            overflow-x: auto; /* السماح بالتمرير الأفقي إذا لزم الأمر */         
-            scrollbar-width: none; /* إخفاء شريط التمرير لفايرفوكس */         
-            -ms-overflow-style: none; /* إخفاء شريط التمرير لـ IE و Edge */         
+            overflow-x: auto;         
+            scrollbar-width: none;         
+            -ms-overflow-style: none;         
         }         
          
-        /* إخفاء شريط التمرير لمتصفحات الويب الأخرى */         
         #bottom-product-bar::-webkit-scrollbar {         
             display: none;         
         }         
@@ -577,17 +727,17 @@
             height: 100%;         
             cursor: pointer;         
             transition: background-color 0.2s, color 0.2s;         
-            color: white; /* لون الأيقونات والنصوص الافتراضي */         
-            font-size: 0.7em; /* خط صغير جداً ليناسب الارتفاع */         
+            color: white;         
+            font-size: 0.7em;         
             font-weight: bold;         
             text-align: center;         
             padding: 0 5px;         
-            min-width: 60px; /* لضمان عدم ضغط الأزرار */         
+            min-width: 60px;         
         }         
                  
         /* تنسيق الأيقونة */         
         .bottom-tab-item i {         
-            font-size: 1em; /* حجم مناسب للأيقونة */         
+            font-size: 1em;         
             margin-bottom: 2px;         
         }         
          
@@ -595,7 +745,23 @@
         .bottom-tab-item.active-filter {         
             background-color: var(--rg1-primary-color);         
             border-top: 3px solid #DC2626;         
-        }         
+        }
+
+        /* تنسيق روابط الاتصال */
+        .contact-info-block .info-item a {
+            color: #a5b4ff; /* لون متناسق مع النمط الداكن */
+        }
+        .contact-info-block .info-item i {
+            color: var(--rg1-primary-color) !important; /* ضمان اللون */
+        }
+        .contact-form .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            color: #e4e6f3;
+        }
+        .contact-form .form-control::placeholder {
+            color: #d1d5db;
+        }
     </style>         
 </head>         
          
@@ -685,7 +851,6 @@
                         <h4>رابعاً: خطوات بسيطة لبدء الاستفادة</h4>         
                         <p>كيف يمكنك الاستفادة من هذه المنتجات والخدمات؟ الأمر بسيط: اختر المنتج أو الخدمة التي تتناسب مع احتياجاتك, اطلع على المزايا والفوائد, ثم ابدأ مباشرة في استخدامها. كل منتج مصحوب بإرشادات واضحة تساعدك على تحقيق أفضل النتائج بسرعة. بالإضافة لذلك, نقدم دعمًا مستمرًا لأي استفسارات قد تواجهها أثناء استخدامك للمنتجات والخدمات.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>ابدأ بالمنتجات التي تتناسب مع أهدافك الحالية لتجنب التشتت والتركيز على هدف واحد في البداية.</li>         
                                 <li>جرّب الأدوات والخدمات المتاحة لفترة قصيرة قبل الالتزام الكامل لتحديد الأنسب لنموذج عملك.</li>         
@@ -720,7 +885,6 @@
                         <h4>رابعاً: الدعم والإرشاد المستمر لتحقيق النمو</h4>         
                         <p>لا يقتصر دورنا على تقديم المنتجات والخدمات فقط, بل نوفر دعمًا متواصلاً لمساعدتك على تحقيق أقصى استفادة. سواء كنت مبتدئًا أو محترفًا, يمكنك الوصول إلى نصائح عملية, إرشادات واضحة, ودعم مباشر لحل أي مشكلة تواجهها أثناء استخدام الخدمات.</p>         
                         <p>         
-                            نصائح عملية للاستفادة:         
                             <ul>         
                                 <li>ابدأ باختيار الخدمات التي تتوافق مع أهدافك الرقمية الحالية وتخدم هدفك الرئيسي في زيادة الأرباح.</li>         
                                 <li>جرّب الأدوات والخدمات المتاحة لفترة قصيرة لتحديد الأنسب لنموذج عملك.</li>         
@@ -754,7 +918,6 @@
                         <h4>رابعاً: تحقيق أقصى استفادة عبر التكامل</h4>         
                         <p>كيف تحقق أقصى استفادة؟ استخدم المنتجات بشكل متكامل مع خدماتنا الرقمية. على سبيل المثال, عند استخدام أداة إدارة الحملات الرقمية مع خدمات تصميم المحتوى, ستحصل على تجربة متكاملة تعزز حضورك الرقمي وتزيد من أرباحك. الجمع بين المنتجات والخدمات يوفر الوقت والجهد ويضاعف النتائج بشكل ملحوظ. التكامل هو القوة الدافعة وراء نمو مشروعك.</p>         
                         <p>         
-                            نصائح عملية لدمج الأدوات:         
                             <ul>         
                                 <li>ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتجنب التشتت.</li>         
                                 <li>جرّب الأدوات والخدمات المتاحة لفترة قصيرة قبل الالتزام الكامل لتحديد الأنسب لنموذج عملك.</li>         
@@ -788,7 +951,6 @@
                         <h4>رابعاً: التكامل الرقمي لتضاعف النتائج</h4>         
                         <p>دمج المنتجات مع الخدمات الرقمية يزيد من فعالية أعمالك. عند استخدام أدوات إدارة الحملات مع خدمات تصميم المحتوى الاحترافي, تحصل على تجربة متكاملة تعزز حضورك الرقمي وتزيد من أرباحك. الجمع بين المنتجات والخدمات يوفر الوقت والجهد ويضاعف النتائج بشكل ملحوظ.</p>         
                         <p>         
-                            نصائح عملية لدمج الأدوات:         
                             <ul>         
                                 <li>ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتجنب التشتت.</li>         
                                 <li>جرّب الأدوات والخدمات المتاحة لفترة قصيرة قبل الالتزام الكامل لتحديد الأنسب لنموذج عملك.</li>         
@@ -822,7 +984,6 @@
                         <h4>رابعاً: دعم شامل وإرشاد مستمر لضمان النجاح</h4>         
                         <p>لا يقتصر دورنا على توفير الأدوات فقط, بل نقدم دعمًا متواصلاً لمساعدتك على تحقيق أقصى استفادة. سواء كنت مبتدئًا أو محترفًا, ستجد إرشادات عملية, نصائح احترافية, ودعم مباشر لحل أي مشكلة تواجهها أثناء استخدام الأدوات الرقمية. هذا يضمن أن لديك كل ما تحتاجه للنجاح في مشروعك.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>اختر الأدوات التي تتوافق مع أهدافك الحالية لتحقيق أفضل النتائج وأسرعها.</li>         
                                 <li>جرّب كل أداة لفترة قصيرة لتحديد الأنسب لك قبل الالتزام الكامل بها.</li>         
@@ -858,10 +1019,9 @@
                         <h4>رابعاً: إرشادات ودعم مستمر من الخبراء</h4>         
                         <p>نقدم لك إرشادات مفصلة حول كيفية استخدام كل أداة أو خدمة لتحقيق أفضل النتائج. سواء كنت مبتدئًا أو محترفًا, ستحصل على نصائح عملية ودعم مباشر لحل أي تحديات قد تواجهك أثناء استخدام الحلول الرقمية. هذا يضمن تجربة سلسة وفعّالة, ويؤكد على التزامنا بدعم نمو مشروعك.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>ركز على الحلول التي تتوافق مع أهدافك الحالية لتعظيم النتائج في أسرع وقت ممكن.</li>         
-                                <li>جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب لك قبل الالتزام الكامل.</li>         
+                                <li>جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.</li>         
                                 <li>استخدم التحليلات لاتخاذ قرارات تسويقية ذكية وزيادة معدل التحويل بشكل مستمر.</li>         
                                 <li>أضف محتوى بصري داعم للخدمات والمنتجات لزيادة جاذبية الصفحة وإقناع الزوار.</li>         
                             </ul>         
@@ -892,7 +1052,6 @@
                         <h4>رابعاً: دمج العروض الرقمية مع محتوى جذاب</h4>         
                         <p>لضمان أفضل تجربة للزائر, نوصي بتقديم محتوى بصري جذاب يدعم كل عرض, مثل الصور والرسوم التوضيحية والفيديوهات القصيرة. هذا يجعل الصفحة أكثر جاذبية ويحفز العملاء على التفاعل مع المنتجات والخدمات بشكل طبيعي. المحتوى الجذاب هو الجسر الذي يعبر به العميل من فضول إلى شراء.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>ابدأ بالعروض التي تتوافق مع أهدافك الحالية لضمان أقصى تأثير على أرباحك.</li>         
                                 <li>جرّب كل عرض لفترة قصيرة لتحديد الأنسب قبل الاستثمار الكامل في الترويج له.</li>         
@@ -926,7 +1085,6 @@
                         <h4>رابعاً: دمج المنتجات مع محتوى بصري جذاب</h4>         
                         <p>دمج المنتجات مع محتوى جذاب يزيد من جاذبية الصفحة. استخدم صورًا ورسومًا توضيحية وفيديوهات قصيرة تدعم المنتجات والخدمات, مما يحفز الزوار على التفاعل واتخاذ القرار بسرعة. المحتوى المرئي الجذاب يرفع من مصداقية الصفحة ويزيد من فرص تحويل الزائر إلى عميل. الجاذبية البصرية هي عامل لا يمكن إغفاله.</p>         
                         <p>         
-                            نصائح عملية للاستفادة:         
                             <ul>         
                                 <li>ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتحقيق أقصى تأثير على دخلك.</li>         
                                 <li>جرّب الأدوات والخدمات لفترة قصيرة لتحديد الأفضل قبل الالتزام الكامل.</li>         
@@ -960,7 +1118,6 @@
                         <h4>رابعاً: دعم وإرشاد مستمر لتحقيق الكفاءة</h4>         
                         <p>نقدم لك نصائح عملية وإرشادات خطوة بخطوة لتحقيق أفضل استفادة من كل خدمة. سواء كنت مبتدئًا أو محترفًا, ستجد دعمًا مباشرًا لمساعدتك على حل أي تحديات, مما يضمن تجربة سلسة وفعّالة مع المنتجات والخدمات الرقمية. الكفاءة هي هدفنا المشترك.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>ركز على الخدمات التي تتناسب مع أهدافك الحالية لتعظيم النتائج في مشروعك.</li>         
                                 <li>جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.</li>         
@@ -994,7 +1151,6 @@
                         <h4>رابعاً: الدعم والإرشاد المستمر لنتائج مضمونة</h4>         
                         <p>نقدم إرشادات واضحة ونصائح عملية حول كيفية استخدام كل خدمة لتحقيق أفضل النتائج. سواء كنت مبتدئًا أو محترفًا, ستجد دعمًا مباشرًا لحل أي تحديات أثناء استخدام الخدمات الرقمية, مما يضمن تجربة سلسة وفعّالة. هدفنا هو أن تكون مستقلاً وقادراً على تحقيق النتائج بنفسك.</p>         
                         <p>         
-                            نصائح عملية للاستفادة القصوى:         
                             <ul>         
                                 <li>ركز على الخدمات والمنتجات التي تتناسب مع أهدافك الحالية لتعظيم النتائج.</li>         
                                 <li>جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.</li>         
@@ -1048,12 +1204,12 @@
                             <div class="info-item" style="margin-bottom: 10px;">         
                                 <i class="fas fa-envelope info-icon" style="color: var(--rg1-primary-color);"></i>         
                                 <span class="label">البريد الإلكتروني:</span>         
-                                <a id="contact-email-link" href="mailto:a.laghrifi@outlook.fr" style="color: #4B5563;">a.laghrifi@outlook.fr</a>         
+                                <a id="contact-email-link" href="mailto:a.laghrifi@outlook.fr" style="color: #a5b4ff;">a.laghrifi@outlook.fr</a>         
                             </div>         
                             <div class="info-item" style="margin-bottom: 10px;">         
                                 <i class="fab fa-whatsapp info-icon" style="color:#25D366;"></i>         
                                 <span class="label">تواصل عبر واتساب:</span>         
-                                <a href="https://wa.me/212660074196" target="_blank" style="color: #4B5563;">انقر للبدء (رسائل فقط)</a>         
+                                <a href="https://wa.me/212660074196" target="_blank" style="color: #a5b4ff;">انقر للبدء (رسائل فقط)</a>         
                             </div>         
                             <div class="info-item">         
                                 <i class="fas fa-hand-holding-usd info-icon" style="color: #0070BA;"></i>         
@@ -1416,31 +1572,25 @@
                     } else {         
                         element.textContent = translations[key][currentLang];         
                     }         
-                }         
+                }
             });         
-            // عند تطبيق اللغة, نقوم بعرض المنتجات مع تصفية "all" كإعداد افتراضي         
             renderProducts('all');          
             renderAffiliates();         
-            // تم إزالة دالة renderBlogPosts لترك المقالات الجديدة المضافة يدوياً.         
         }         
          
-        // تم تعديل دالة renderProducts لتشمل التصفية         
         function renderProducts(filterCategory) {         
             const container = document.getElementById('products-container');         
             if (!container) return;         
             container.innerHTML = '';         
                      
-            // تحديد فئة "links" كفئة افتراضية لـ "الروابط" (المنتج الرقمي/التابع)         
             const actualFilter = (filterCategory === 'all') ? 'links' : filterCategory;          
                      
             products.forEach(product => {         
-                // منطق التصفية: عرض الكل إذا كان الفلتر 'all' أو إذا كانت فئة المنتج تطابق الفلتر المطلوب         
                 if (actualFilter === 'all' || product.category === actualFilter) {         
                     const card = document.createElement('div');         
                     card.className = 'product-card';         
-                    // إضافة تصنيف المنتج كسمة بيانات لسهولة التصفية المستقبلية         
                     card.setAttribute('data-category', product.category);          
-                    card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 6px; margin-bottom: 10px;" />         
+                    card.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy" style="width:100%; height:auto; border-radius: 14px; margin-bottom: 10px;" />         
                                       <h3 style="font-size:1.1em; color: var(--rg1-primary-color);">${product.name}</h3>         
                                       <p style="color: var(--text-secondary-light); margin-bottom: 10px; font-size:0.9em;">${product.description}</p>         
                                       <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:#10B981; text-decoration:none; font-weight: bold;">شراء الآن</a>`;         
@@ -1454,7 +1604,7 @@
             if (affiliatesGrid) {         
                 affiliatesGrid.innerHTML = '';         
                 affiliatePlatforms.forEach(platform => {         
-                    const platformDiv = `<a href="${platform.link}" target="_blank" class="affiliate-link-card" style="text-decoration:none; display:flex; flex-direction: column; align-items: center; justify-content: center; gap:8px;"><img src="${platform.img}" alt="${platform.name}" style="width:48px; height:48px; object-fit:contain; border-radius: 4px;"><span style="font-size:1.1em; font-weight:bold; color: var(--rg1-primary-color);">${platform.name}</span></a>`;         
+                    const platformDiv = `<a href="${platform.link}" target="_blank" class="affiliate-link-card" style="text-decoration:none; display:flex; flex-direction: column; align-items: center; justify-content: center; gap:8px;"><img src="${platform.img}" alt="${platform.name}" style="width:48px; height:48px; object-fit:contain; border-radius: 14px;"><span style="font-size:1.1em; font-weight:bold; color: var(--rg1-primary-color);">${platform.name}</span></a>`;         
                     affiliatesGrid.innerHTML += platformDiv;         
                 });         
             }         
@@ -1475,10 +1625,9 @@
                 item.className = 'carousel-item';         
                 if (index === 0) item.classList.add('active');         
                 if (media.type === 'image') {         
-                    item.innerHTML = `<img src="${media.src}" alt="Product Ad ${index + 1}" loading="lazy" />`;         
+                    item.innerHTML = `<img src="${media.src}" alt="Product Ad ${index + 1}" loading="lazy" style="border-radius: 14px;"/>`;         
                 } else if (media.type === 'video') {         
-                    // تشغيل آلي ومكتوم للفيديوهات         
-                    item.innerHTML = `<iframe width="100%" height="100%" src="${media.src}&autoplay=1&mute=1&loop=1&playlist=${media.src.split('/').pop().split('?')[0]}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;         
+                    item.innerHTML = `<iframe width="100%" height="100%" src="${media.src}&autoplay=1&mute=1&loop=1&playlist=${media.src.split('/').pop().split('?')[0]}" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 14px;"></iframe>`;         
                 }         
                 container.appendChild(item);         
             });         
@@ -1495,7 +1644,7 @@
          
         function startCarousel() {         
             if (carouselInterval) clearInterval(carouselInterval);         
-            carouselInterval = setInterval(showNextMedia, 5000); // تغيير كل 5 ثوانٍ         
+            carouselInterval = setInterval(showNextMedia, 5000);         
         }         
          
         // =======================================================================         
@@ -1536,32 +1685,26 @@
         function showWelcomePopup() {         
             const popup = document.getElementById('welcome-popup');         
             if (popup) {         
-                // إظهار النافذة بعد ثانية واحدة لمنع التعارض مع التحميل         
                 setTimeout(() => {          
                     if (!localStorage.getItem('rg1_welcome_seen')) {         
                         popup.classList.remove('hidden');          
-                        // يمكن حفظ حالة الظهور لمرة واحدة هنا إذا أردنا (لم يطلبها المستخدم)         
-                        // localStorage.setItem('rg1_welcome_seen', 'true');         
                     }         
                 }, 1000);         
             }         
         }         
          
         function setPaymentLinks() {         
-            // تحديث جميع أزرار PayPal بالرابط الصحيح         
             const paypalButtons = document.querySelectorAll('[id^="paypal-support-button"]');         
             paypalButtons.forEach(button => {         
                 button.href = 'https://www.paypal.com/ncp/payment/QTMEP82WWYHQ2';         
             });         
         }         
                  
-        // معالجة إرسال نموذج الاتصال (لتوجيه الرسالة إلى البريد الصحيح)         
         function handleContactFormSubmission(e) {         
             e.preventDefault();         
             const emailField = document.getElementById('contact-email-link');         
             const targetEmail = emailField ? emailField.href.replace('mailto:', '') : 'a.laghrifi@outlook.fr';         
                      
-            // محاكاة الإرسال         
             alert(`تم استلام رسالتك بنجاح! سيتم توجيهها إلى البريد الإلكتروني: ${targetEmail}.`);         
             this.reset();         
         }         
@@ -1604,11 +1747,9 @@
                 tab.addEventListener('click', function() {         
                     const filter = this.getAttribute('data-filter');         
                              
-                    // إزالة وتعيين الفئة النشطة         
                     bottomTabs.forEach(t => t.classList.remove('active-filter'));         
                     this.classList.add('active-filter');         
                              
-                    // إعادة عرض المنتجات حسب الفلتر         
                     renderProducts(filter);         
                 });         
             });         
@@ -1618,7 +1759,6 @@
         // --- الإطلاق النهائي (AUTO-INIT) ---         
         // =======================================================================         
         document.addEventListener('DOMContentLoaded', () => {         
-            // إظهار البانر قبل تطبيق اللغة لضمان ظهوره بشكل فوري في أعلى الصفحة         
             showCookieBanner();         
             handleCookieConsent();         
          
@@ -1627,18 +1767,15 @@
             setPaymentLinks();         
             showWelcomePopup();         
                      
-            // إغلاق لوحة الترحيب         
             document.getElementById('close-popup').addEventListener('click', () => {         
                 document.getElementById('welcome-popup').classList.add('hidden');         
             });         
          
-            // ربط نموذج الاتصال بالوظيفة         
             const contactForm = document.getElementById('contactForm');         
             if (contactForm) {         
                 contactForm.addEventListener('submit', handleContactFormSubmission);         
             }         
          
-            // إظهار زر الروبوت عند التمرير         
             if (chatbotButton) {         
                 window.addEventListener('scroll', () => {         
                     if (window.scrollY > 200) {         
@@ -1651,57 +1788,45 @@
                      
             console.log(`RG1Shop App Initialized: All requested features applied.`);         
                      
-            // --- كود التبويبات الجديد ---         
             const navLinks = document.querySelectorAll('.main-nav .nav-links-container a');         
             const sections = document.querySelectorAll('.section');         
          
-            // إعداد التصفية في الشريط السفلي         
             setupBottomBarFiltering();         
-            toggleBottomBar(); // إظهار البار عند التحميل إذا كان القسم النشط هو المنتجات         
+            toggleBottomBar();         
                      
-            // عرض القسم الأول بشكل افتراضي (تم إنجاز ذلك عبر إضافة 'active' يدوياً إلى #products-section)         
-            // التأكد من أن #products-section هو النشط افتراضياً         
             const firstSection = document.getElementById('products-section');         
             if (firstSection && !firstSection.classList.contains('active')) {         
                 sections.forEach(sec => sec.classList.remove('active'));         
                 firstSection.classList.add('active');         
             }         
                      
-            // التأكد من أن الرابط الأول هو النشط افتراضياً         
             if(navLinks.length > 0) {         
                 navLinks.forEach(l => l.classList.remove('active-link'));         
-                // التحقق من الرابط الذي يقود إلى أول قسم نشط وتنشيطه         
                 const activeSectionId = document.querySelector('.section.active').id;         
                 const activeLink = document.querySelector(`.main-nav a[href="#${activeSectionId}"]`);         
                 if(activeLink) {         
                     activeLink.classList.add('active-link');         
                 } else {         
-                    navLinks[0].classList.add('active-link'); // تنشيط الأول كخيار احتياطي         
+                    navLinks[0].classList.add('active-link');         
                 }         
             }         
                      
          
-            // إضافة حدث النقر لكل رابط         
             navLinks.forEach(link => {         
                 link.addEventListener('click', function(e) {         
-                    e.preventDefault(); // منع السلوك الافتراضي للروابط         
+                    e.preventDefault();         
                              
-                    // إزالة الفعالية عن جميع الأقسام والروابط         
                     sections.forEach(sec => sec.classList.remove('active'));         
                     navLinks.forEach(l => l.classList.remove('active-link'));         
          
-                    // جلب القسم المستهدف من href الرابط         
-                    const targetId = this.getAttribute('href').substring(1); // إزالة #         
+                    const targetId = this.getAttribute('href').substring(1);         
                     const targetSection = document.getElementById(targetId);         
          
-                    // إضافة الفعالية للقسم المختار         
                     if(targetSection) targetSection.classList.add('active');         
                     this.classList.add('active-link');         
                              
-                    // إظهار أو إخفاء الشريط السفلي         
                     toggleBottomBar();         
                              
-                    // إعادة ضبط فلتر الشريط السفلي إلى "all" عند التبديل إلى قسم المنتجات         
                     if (targetId === 'products-section') {         
                         document.querySelector('.bottom-tab-item.active-filter')?.classList.remove('active-filter');         
                         document.querySelector('.bottom-tab-item[data-filter="all"]').classList.add('active-filter');         
@@ -1709,35 +1834,29 @@
                     }         
          
                              
-                    // التمرير لأعلى الصفحة وتجنب تغطية المحتوى بواسطة الـ fixed header         
-                    // يتم التمرير إلى نقطة تبعد ارتفاع الـ header عن الأعلى (تم التعديل ليناسب الـ fixed nav)         
                     const navHeight = document.querySelector('.main-nav').offsetHeight;         
                     let bottomBarHeight = 0;         
                     if(targetId === 'products-section' && bottomBar.style.display !== 'none') {         
                         bottomBarHeight = bottomBar.offsetHeight;         
                     }         
-                    const topPosition = targetSection.offsetTop - navHeight - 20; // -20 للتباعد الإضافي         
+                    const topPosition = targetSection.offsetTop - navHeight - 20;         
                              
                     window.scrollTo({          
                         top: topPosition > 0 ? topPosition : 0,          
                         behavior: 'smooth'          
                     });  
                       
-                    // ⭐️ السطر الجديد: إرسال حدث مخصص لـ GTM ⭐️  
                     if (window.dataLayer) {  
                         dataLayer.push({  
                             'event': 'section_view',  
                             'pagePath': '/' + targetId   
                         });  
                     }  
-                    // ⭐️ نهاية السطر الجديد ⭐️  
                       
                 });         
             });         
-            // --- نهاية كود التبويبات الجديد ---         
         });         
     </script>         
 </body>         
-</html> 
-
+</html>
 
