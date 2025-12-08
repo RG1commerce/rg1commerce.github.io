@@ -2027,268 +2027,68 @@
                         renderBlog();     
                     }     
      
-<script>
-    // =======================================================================
-    // RG1Shop: الكود الموحد والنهائي (يشمل جميع الإصلاحات)
-    // =======================================================================
-
-    // -------------------------------------------------------------
-    // 🔥 1. تعريف المتغيرات والترجمات
-    // -------------------------------------------------------------
-    let currentLang = localStorage.getItem('rg1_lang') || 'ar'; // اللغة الافتراضية
-    const langToggleBtn = document.getElementById('lang-toggle');
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const lastUpdateDate = '2025/11/17'; // تاريخ آخر تحديث
-
-    const translations = Object.freeze({
-        // ... (يجب أن تكون جميع الترجمات الخاصة بك هنا)
-        'menu_events': { ar: 'حفلات', en: 'Events' },
-        'menu_tourism': { ar: 'سياحة', en: 'Tourism' },
-        'nav_privacy_text': { ar: 'خصوصية', en: 'Privacy' },
-        'nav_terms_text': { ar: 'شروط', en: 'Terms' },
-        'nav_about_text': { ar: 'نحن', en: 'About' },
-        'cookie_banner_text': { ar: 'نستخدم الكوكيز لتحسين تجربتك وعرض إعلانات ذات صلة.', en: 'We use cookies to enhance your experience and display relevant ads.' },
-        // ... (بقية الترجمات)
-    });
-
-    const affiliatePlatforms = Object.freeze([ /* ... */ ]);
-    const products = Object.freeze([ /* ... */ ]);
-
-    // -------------------------------------------------------------
-    // 🔥 2. دالة الترجمة المُحسّنة والكاملة (طبقها كما هي في ملفك الأصلي)
-    // -------------------------------------------------------------
-    function applyLanguage() {
-        // ... (محتوى دالة applyLanguage بالكامل)
-        document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-        document.documentElement.setAttribute('lang', currentLang);
-        document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
-
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.getAttribute('data-key');
-            if (translations[key] && translations[key][currentLang]) {
-                const text = translations[key][currentLang];
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                    const placeholderKey = element.getAttribute('data-placeholder-key');
-                    if (placeholderKey && translations[placeholderKey]) {
-                        element.placeholder = translations[placeholderKey][currentLang];
-                    }
-                } else if (element.matches('.main-categories-nav span') || element.matches('.secondary-bottom-nav-wrapper .nav-link span') || element.matches('.subcategory-card span')) {
-                    element.textContent = text;
-                } else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'H4') {
-                    const originalContent = element.innerHTML;
-                    const emojiMatch = originalContent.match(/^((\p{Emoji}|\p{Emoji_Modifier_Base}|\p{Emoji_Modifier}|\p{Emoji_Component}|\p{Extended_Pictographic})\s*)+/u);
-                    const emojiPrefix = emojiMatch ? emojiMatch[0] : '';
-                    const iconMatch = originalContent.match(/<i[^>]*><\/i>/i);
-                    const iconPrefix = iconMatch ? iconMatch[0] : '';
-                    element.innerHTML = emojiPrefix + iconPrefix + ' ' + text;
-                } else if (element.tagName === 'SMALL' && element.getAttribute('data-key').includes('date')) {
-                    element.textContent = translations['blog_date_prefix'][currentLang] + ' ' + lastUpdateDate;
-                } else if (element.getAttribute('data-key') === 'cookie_banner_text') {
-                    const banner = document.getElementById('cookie-banner').querySelector('p');
-                    if (banner) banner.textContent = text;
-                } else {
-                    element.textContent = text;
-                }
-            }
-        });
-
-        // تحديث أزرار الكوكيز
-        const acceptBtn = document.getElementById('accept-cookies');
-        const rejectBtn = document.getElementById('reject-cookies');
-        if (acceptBtn) acceptBtn.textContent = translations['cookie_accept'][currentLang];
-        if (rejectBtn) rejectBtn.textContent = translations['cookie_reject'][currentLang];
-
-        // تحديث تاريخ آخر تحديث للسياسات
-        document.querySelectorAll('.last-updated-date').forEach(el => {
-            el.textContent = translations['last_updated'][currentLang] + ' ' + lastUpdateDate;
-        });
-
-        // يجب أن تكون الدوال الأخرى مثل renderProducts و renderAffiliates هنا
-        // renderProducts();
-        // renderAffiliates();
-        // translateBlogContent();
-        if (langToggleBtn) langToggleBtn.setAttribute('data-lang', currentLang);
-    }
-    
-    // -------------------------------------------------------------
-    // 🔥 3. دالة فصل الروابط القانونية (Legal Links Fix)
-    // -------------------------------------------------------------
-    function fixLegalLinks() {
-        const allLinks = document.querySelectorAll('a[href]');
-
-        allLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            
-            // روابط الخصوصية
-            if (href && (href.includes('#privacy') || href.includes('#policy'))) {
-                link.setAttribute('href', 'privacy.html');
-                link.classList.remove('nav-link');
-                link.removeEventListener('click', function(e) { e.preventDefault(); });
-            }
-            
-            // روابط الشروط
-            if (href && (href.includes('#terms') || href.includes('#conditions'))) {
-                link.setAttribute('href', 'terms.html');
-                link.classList.remove('nav-link');
-                link.removeEventListener('click', function(e) { e.preventDefault(); });
-            }
-            
-            // رابط من نحن
-            if (href && href.includes('#about')) {
-                link.setAttribute('href', 'about.html');
-                link.classList.remove('nav-link');
-                link.removeEventListener('click', function(e) { e.preventDefault(); });
-            }
-        });
-    }
-    
-    // ... (بقية الدوال المساعدة مثل renderProducts, setPaymentLinks, initializeCookieBanner) ...
-
-    // =======================================================================
-    // 🔥 4. وظائف التنقل الرئيسية (بما في ذلك نداءات المدونة والمنتجات)
-    // =======================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // تعريف العناصر
-        const mainNavLinks = document.querySelectorAll('.main-categories-nav .main-nav-link');
-        const secondaryNavLinks = document.querySelectorAll('.secondary-bottom-nav-wrapper .nav-link');
-        const allSections = document.querySelectorAll('.section');
-        const initialActiveSection = document.getElementById('events-section');
-        
-        // تطبيق اللغة والإعدادات الأولية
-        applyLanguage(); 
-        // setPaymentLinks();
-        // initializeCookieBanner();
-
-        // تفعيل قسم البداية الافتراضي
-        if (initialActiveSection) {
-            allSections.forEach(sec => sec.classList.remove('active'));
-            initialActiveSection.classList.add('active');
-            const initialActiveLink = document.querySelector(`.main-categories-nav .main-nav-link[href="#events-section"]`);
-            if (initialActiveLink) {
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                initialActiveLink.classList.add('active-link');
-            }
-        }
-        secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-
-        // -------------------------------------------------------------
-        // 🔥 4.1 معالجة النقر على روابط الشريط العلوي (mainNavLinks)
-        // -------------------------------------------------------------
-        mainNavLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // 🔴 جلب الـ ID بالطريقة التي تفهمها دوالك
-                const targetId = this.getAttribute('href').substring(1); 
-                const targetSection = document.getElementById(targetId);
-
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-                allSections.forEach(sec => sec.classList.remove('active'));
-                
-                if(targetSection) targetSection.classList.add('active');
-                this.classList.add('active-link');
-                
-                // ✅ نداءات المدونة والمنتجات موجودة هنا (كما كان في الكود القديم)
-                if (targetId === 'products-section') {
-                    renderProducts('all'); 
-                }
-                if (targetId === 'blog-section') {
-                    renderBlog(); 
-                }
-
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;
-                const topPosition = targetSection.offsetTop - topNavHeight;
-
-                window.scrollTo({ top: topPosition > 0 ? topPosition : 0, behavior: 'smooth' });
-                
-                // 🔴 حفظ مكان التمرير
-                localStorage.setItem("lastScrollPos", window.scrollY); 
-                
-                if (window.dataLayer) {     
-                    dataLayer.push({     
-                        'event': 'section_view',     
-                        'pagePath': '/' + targetId     
+                    const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;     
+                    const topPosition = targetSection.offsetTop - topNavHeight;     
+     
+                    window.scrollTo({     
+                        top: topPosition > 0 ? topPosition : 0,     
+                        behavior: 'smooth'     
                     });     
-                }
-            });
-        });
-
-        // -------------------------------------------------------------
-        // 🔥 4.2 معالجة النقر على روابط الشريط السفلي (secondaryNavLinks)
-        // -------------------------------------------------------------
-        secondaryNavLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetHref = this.getAttribute('href');
-
-                // التحقق من الروابط القانونية - نتركها لـ fixLegalLinks
-                if (targetHref.includes('#privacy') || targetHref.includes('#terms') || targetHref.includes('#about')) {
-                    return; 
-                }
-                
-                // 🔴 جلب الـ ID بالطريقة التي تفهمها دوالك
-                const targetId = targetHref.substring(1); 
-                const targetSection = document.getElementById(targetId);
-
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-                allSections.forEach(sec => sec.classList.remove('active'));
-                
-                if(targetSection) targetSection.classList.add('active');
-                this.classList.add('active-link');
-                
-                // ✅ نداءات المدونة والمنتجات موجودة هنا
-                if (targetId === 'products-section') {
-                    renderProducts('all');
-                }
-                if (targetId === 'blog-section') {
-                    renderBlog();
-                }
-
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;
-                const topPosition = targetSection.offsetTop - topNavHeight;
-
-                window.scrollTo({ top: topPosition > 0 ? topPosition : 0, behavior: 'smooth' });
-                
-                // 🔴 حفظ مكان التمرير
-                localStorage.setItem("lastScrollPos", window.scrollY); 
-                
-                 if (window.dataLayer) {     
-                    dataLayer.push({     
-                        'event': 'section_view',     
-                        'pagePath': '/' + targetId     
+     
+                    if (window.dataLayer) {     
+                        dataLayer.push({     
+                            'event': 'section_view',     
+                            'pagePath': '/' + targetId     
+                        });     
+                    }     
+     
+                });     
+            });     
+     
+            secondaryNavLinks.forEach(link => {     
+                link.addEventListener('click', function(e) {     
+                    e.preventDefault();     
+     
+                    allSections.forEach(sec => sec.classList.remove('active'));     
+                    mainNavLinks.forEach(l => l.classList.remove('active-link'));     
+                    secondaryNavLinks.forEach(l => l.classList.remove('active-link'));     
+     
+                    const targetId = this.getAttribute('href').substring(1);     
+                    const targetSection = document.getElementById(targetId);     
+     
+                    if(targetSection) targetSection.classList.add('active');     
+                    this.classList.add('active-link');     
+     
+                    if (targetId === 'products-section') {     
+                        renderProducts('all');     
+                    }     
+                    if (targetId === 'blog-section') {     
+                        renderBlog();     
+                    }     
+     
+                    const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;     
+                    const topPosition = targetSection.offsetTop - topNavHeight;     
+     
+                    window.scrollTo({     
+                        top: topPosition > 0 ? topPosition : 0,     
+                        behavior: 'smooth'     
                     });     
-                } 
-            });
-        });
-        
-        // -------------------------------------------------------------
-        // 🔥 4.3 تشغيل كود فصل الروابط
-        // -------------------------------------------------------------
-        fixLegalLinks();
-    });
+     
+                    if (window.dataLayer) {     
+                        dataLayer.push({     
+                            'event': 'section_view',     
+                            'pagePath': '/' + targetId     
+                        });     
+                    }     
+     
+                });     
+            });     
+     
+            // هذا السطر يقوم بإزالة active-link من جميع روابط الشريط السفلي عند التحميل الأولي     
+            // قد تحتاج إلى تحديد رابط معين ليكون نشطًا افتراضيًا إذا لم يكن هناك واحد     
+            secondaryNavLinks.forEach(l => l.classList.remove('active-link'));     
+        });     
+    </script>     
+</body>     
+</html> 
 
-    // =======================================================================
-    // 🔥 5. تثبيت التمرير: وظائف LocalStorage (تعمل في كل مرة يتم فيها التحديث)
-    // =======================================================================
-    
-    // 🔴 5.1 تسجيل مكان التمرير في كل مرة يتحرك فيها المستخدم
-    document.addEventListener("scroll", function () {
-        localStorage.setItem("lastScrollPos", window.scrollY);
-    });
-
-    // 🔴 5.2 عند تحميل الصفحة، نعود إلى المكان المسجل
-    window.addEventListener("load", function () {
-        const pos = localStorage.getItem("lastScrollPos");
-        if (pos !== null) {
-            // نستخدم تأخير بسيط لضمان تحميل جميع العناصر
-            setTimeout(() => {
-                window.scrollTo(0, pos);
-            }, 50); 
-        }
-    });
-</script>
-</body> 
-</html>
