@@ -2101,6 +2101,33 @@
     // 🔥 1. تعريف المتغيرات والترجمات
     // -------------------------------------------------------------
     let currentLang = localStorage.getItem('rg1_lang') || 'ar'; // اللغة الافتراضية
+    const langToggleBtn = documeif (window.dataLayer) {     
+                        dataLayer.push({     
+                            'event': 'section_view',     
+                            'pagePath': '/' + targetId     
+                        });     
+                    }     
+     
+                });     
+            });     
+     
+            // هذا السطر يقوم بإزالة active-link من جميع روابط الشريط السفلي عند التحميل الأولي     
+            // قد تحتاج إلى تحديد رابط معين ليكون نشطًا افتراضيًا إذا لم يكن هناك واحد     
+            secondaryNavLinks.forEach(l => l.classList.remove('active-link'));     
+        });     
+    </script>     
+</body>     
+</html> 
+
+<script>
+    // =======================================================================
+    // RG1Shop: كود الجافاسكريبت الموحد والنهائي
+    // =======================================================================
+
+    // -------------------------------------------------------------
+    // 🔥 1. تعريف المتغيرات والترجمات
+    // -------------------------------------------------------------
+    let currentLang = localStorage.getItem('rg1_lang') || 'ar'; // اللغة الافتراضية
     const langToggleBtn = document.getElementById('lang-toggle');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const lastUpdateDate = '2025/11/17'; // تاريخ آخر تحديث
@@ -2243,6 +2270,7 @@
     // =======================================================================
 
     document.addEventListener('DOMContentLoaded', () => {
+
         // تعريف العناصر
         const mainNavLinks = document.querySelectorAll('.main-categories-nav .main-nav-link');
         const secondaryNavLinks = document.querySelectorAll('.secondary-bottom-nav-wrapper .nav-link');
@@ -2253,151 +2281,11 @@
         applyLanguage(); 
         setPaymentLinks();
         initializeCookieBanner();
-        
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', handleContactFormSubmission);
-        }
 
-        // تفعيل قسم البداية الافتراضي
-        if (initialActiveSection) {
-            allSections.forEach(sec => sec.classList.remove('active'));
-            initialActiveSection.classList.add('active');
-            const initialActiveLink = document.querySelector(`.main-categories-nav .main-nav-link[href="#events-section"]`);
-            if (initialActiveLink) initialActiveLink.classList.add('active-link');
-        }
-
-        // -------------------------------------------------------------
-        // 🔥 1. معالجة تحديث الروابط الداخلية عند التحميل (القراءة من الهاش)
-        // -------------------------------------------------------------
-        function setActiveSectionFromHash() {
-            const hash = window.location.hash;
-            if (hash && hash !== '#') {
-                const targetSection = document.querySelector(hash);
-                const targetLink = document.querySelector(`.main-categories-nav .main-nav-link[href="${hash}"]`) ||
-                                   document.querySelector(`.secondary-bottom-nav-wrapper .nav-link[href="${hash}"]`);
-
-                if (targetSection) {
-                    allSections.forEach(sec => sec.classList.remove('active'));
-                    targetSection.classList.add('active');
-
-                    mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                    secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-
-                    if (targetLink) targetLink.classList.add('active-link');
-
-                    // التمرير إلى القسم بعد تحميل الصفحة بالكامل
-                    window.addEventListener('load', () => {
-                        const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;
-                        const topPosition = targetSection.offsetTop - topNavHeight;
-                        window.scrollTo({
-                            top: topPosition > 0 ? topPosition : 0,
-                            behavior: 'smooth'
-                        });
-                    });
-                }
-            }
-        }
-        setActiveSectionFromHash();
-        // -------------------------------------------------------------
-
-        // -------------------------------------------------------------
-        // 🔥 2. معالجة النقر على روابط الشريط العلوي (mainNavLinks)
-        // -------------------------------------------------------------
-        mainNavLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-                allSections.forEach(sec => sec.classList.remove('active'));
-
-                if(targetSection) targetSection.classList.add('active');
-                this.classList.add('active-link');
-
-                // 🔥🔥 الإضافة المطلوبة لحفظ الهاش عند النقر 🔥🔥
-                window.location.hash = targetId; 
-
-                if (targetId === '#products-section') {
-                    renderProducts('all');
-                }
-                if (targetId === '#blog-section') {
-                    renderBlog();
-                }
-
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;
-                const topPosition = targetSection.offsetTop - topNavHeight;
-
-                window.scrollTo({
-                    top: topPosition > 0 ? topPosition : 0,
-                    behavior: 'smooth'
-                });
-
-                if (window.dataLayer) {
-                    dataLayer.push({
-                        'event': 'section_view',
-                        'pagePath': '/' + targetId.replace('#', '')
-                    });
-                }
-            });
-        });
-
-        // -------------------------------------------------------------
-        // 🔥 3. معالجة النقر على روابط الشريط السفلي (secondaryNavLinks)
-        // -------------------------------------------------------------
-        secondaryNavLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-
-                // التحقق من الهاش، إذا كان من العناوين القانونية/الفرعية (سيتم تجاهله لأن fixLegalLinks تتولى الأمر)
-                if (targetId.includes('#privacy') || targetId.includes('#terms') || targetId.includes('#about')) {
-                    // نضمن هنا أن النقر لن يتسبب في التمرير الداخلي إذا كان fixLegalLinks قد قام بتحويله إلى رابط خارجي
-                    // fixLegalLinks يقوم بإضافة معالج نقر جديد يفتح الصفحة الخارجية، لذلك هذا الـ 'return' ليس ضرورياً
-                    // لكننا سنستخدم منطق الفصل لضمان عدم حدوث أي تداخل
-                    return; 
-                }
-                
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));
-                allSections.forEach(sec => sec.classList.remove('active'));
-
-                if(targetSection) targetSection.classList.add('active');
-                this.classList.add('active-link');
-
-                // 🔥🔥 الإضافة المطلوبة لحفظ الهاش عند النقر 🔥🔥
-                window.location.hash = targetId;
-
-                if (targetId === '#products-section') {
-                    renderProducts('all');
-                }
-                if (targetId === '#blog-section') {
-                    renderBlog();
-                }
-
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;
-                const topPosition = targetSection.offsetTop - topNavHeight;
-
-                window.scrollTo({
-                    top: topPosition > 0 ? topPosition : 0,
-                    behavior: 'smooth'
-                });
-
-                if (window.dataLayer) {
-                    dataLayer.push({
-                        'event': 'section_view',
-                        'pagePath': '/' + targetId.replace('#', '')
-                    });
-                }
-            });
-        });
-        
-        // -------------------------------------------------------------
-        // 🔥 4. تشغيل كود فصل الروابط بعد إعداد جميع المعالجات
-        // -------------------------------------------------------------
-        fixLegalLinks();
-    });
-</script>
+                           // (الكود المُعدَّل بالكامل الذي يحل محل القديم)
+// ...
+// ... (هذا هو الكود الذي يبدأ بـ // تعريف العناصر وينتهي بـ fixLegalLinks(); )
+// ...
+// (لصقه هنا يضمن التخلص من جميع الأكواد المتعارضة)
+// ...
+   
