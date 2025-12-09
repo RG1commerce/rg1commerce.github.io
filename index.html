@@ -2121,15 +2121,3 @@
     fixLegalLinks(); 
 </script>
 
-<script>
-    function toggleAdsense() {
-        const adContainer = document.querySelector('.top-ads-container');
-        // يتم العرض فقط إذا كان الرابط لا يحتوي على وسم (#) أو يحتوي على #events-section (الرئيسية)
-        const isHomePage = window.location.hash === '' || window.location.hash === '#events-section';
-        if (adContainer) {
-            adContainer.style.display = isHomePage ? 'block' : 'none';
-        }
-    }
-    window.addEventListener('load', toggleAdsense); // تشغيل عند تحميل الصفحة
-    window.addEventListener('hashchange', toggleAdsense); // تشغيل عند التنقل بين الأقسام
-</script>
