@@ -638,7 +638,28 @@
     <!-- End Google Tag Manager (noscript) -->    
     
     <!-- الشريط العلوي الرئيسي -->    
-    <div id="main-categories-nav" class="main-categories-nav">    
+    <div id="main-categories-nav" class="main-categories-nav">
+          <!-- 🔥 إعلان مثبت أسفل الشريط العلوي -->
+<div id="top-fixed-ad" style="
+    width: 100%;
+    margin: 0;
+    padding: 5px 0;
+    background: transparent;
+    text-align: center;
+    position: relative;
+    z-index: 9999;
+">
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9228235223985409"
+        data-ad-slot="1234567890"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
         <!-- تم تعديل هيكلة الروابط لإضافة data-key على span لتغيير النص فقط -->    
         <a href="#events-section" class="main-nav-link active-link">    
             <i class="fas fa-calendar-alt"></i> <span data-key="menu_events">حفلات</span>    
@@ -2121,3 +2142,17 @@
     fixLegalLinks(); 
 </script>
 
+<script>
+function fixTopAdPosition() {
+    const nav = document.getElementById('main-categories-nav');
+    const ad = document.getElementById('top-fixed-ad');
+
+    if (nav && ad) {
+        const navHeight = nav.offsetHeight;
+        ad.style.marginTop = navHeight + "px";
+    }
+}
+
+window.addEventListener('load', fixTopAdPosition);
+window.addEventListener('resize', fixTopAdPosition);
+    </script>
