@@ -1,0 +1,35 @@
+# اسم سير العمل (يظهر في قائمة Actions)
+name: تحديث تلقائي وتثبيت الإعلان والبحث (الحل المضمون)
+
+# متى يعمل هذا الإجراء؟
+on:
+  push:
+    branches:
+      - main
+      
+# تعريف المهمة
+jobs:
+  تعديل_ودفع_التحديثات:
+    runs-on: ubuntu-latest
+    
+    # خطوات العمل
+    steps:
+      - name: سحب الكود من المستودع
+        uses: actions/checkout@v4
+      
+      - name: إعداد بيئة Node.js (المطلوبة لتشغيل JavaScript)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: تثبيت مكتبة Cheerio (محلل HTML القوي)
+        run: npm install cheerio
+        
+      - name: تشغيل كود التعديل المضمون (script.js)
+        run: node script.js
+        
+      - name: حفظ التغييرات ودفعها تلقائيًا
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'آلي: تطبيق الإصلاح المضمون Node.js وإدراج الإعلان والبحث'
+          token: ${{ secrets.GITHUB_TOKEN }}
